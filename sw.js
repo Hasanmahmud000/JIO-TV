@@ -1,43 +1,28 @@
-// sw.js
-const CACHE_NAME = 'cricstreamzone-v1.0.0';
+// sw.js - Service Worker for Background Notifications
+const CACHE_NAME = 'cricstreamzone-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js',
-  'https://i.postimg.cc/3rPWWckN/icon-192.png'
+  'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js'
 ];
 
 // Install event
-self.addEventListener('install', function(event) {
+self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function(cache) {
+      .then(cache => {
         return cache.addAll(urlsToCache);
       })
   );
   self.skipWaiting();
 });
 
-// Fetch event
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      }
-    )
-  );
-});
-
 // Activate event
-self.addEventListener('activate', function(event) {
+self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(function(cacheNames) {
+    caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.map(function(cacheName) {
+        cacheNames.map(cacheName => {
           if (cacheName !== CACHE_NAME) {
             return caches.delete(cacheName);
           }
@@ -48,79 +33,79 @@ self.addEventListener('activate', function(event) {
   self.clients.claim();
 });
 
-// Background sync for notifications
-self.addEventListener('sync', function(event) {
-  if (event.tag === 'background-notification-check') {
-    event.waitUntil(checkMatchesInBackground());
-  }
+// Fetch event
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      }
+    )
+  );
 });
 
-// Message event for skip waiting
-self.addEventListener('message', function(event) {
+// Background notification handling
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SHOW_NOTIFICATION') {
+    const { title, body, icon } = event.data;
+    
+    self.registration.showNotification(title, {
+      body: body,
+      icon: icon || 'https://i.postimg.cc/3rPWWckN/icon-192.png',
+      badge: 'https://i.postimg.cc/3rPWWckN/icon-192.png',
+      tag: 'cricket-match',
+      requireInteraction: false,
+      silent: false,
+      vibrate: [200, 100, 200],
+      actions: [
+        {
+          action: 'view',
+          title: 'Watch Now',
+          icon: 'https://i.postimg.cc/3rPWWckN/icon-192.png'
+        }
+      ]
+    });
+  }
+  
   if (event.data && event.data.action === 'skipWaiting') {
     self.skipWaiting();
   }
 });
 
-// Background notification check
-async function checkMatchesInBackground() {
-  try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbxzx4xcwEGidoxEd7BQshkR9FKHjK5o0p8ukNY4NsKNR0EsShY7eV3MUxA2iXz1V8bmHg/exec');
-    const data = await response.json();
-    const matches = data.matches || [];
-    
-    const now = new Date();
-    
-    matches.forEach(match => {
-      const matchTime = new Date(match.MatchTime);
-      const timeDiff = matchTime - now;
-      
-      // Notify 15 minutes before match starts
-      if (timeDiff > 0 && timeDiff <= 15 * 60 * 1000) {
-        self.registration.showNotification('🏏 Match Starting Soon!', {
-          body: `${match.Team1} vs ${match.Team2} starts in 15 minutes`,
-          icon: 'https://i.postimg.cc/3rPWWckN/icon-192.png',
-          badge: 'https://i.postimg.cc/3rPWWckN/icon-192.png',
-          tag: `match-${match.Team1}-${match.Team2}-15min`,
-          requireInteraction: true,
-          actions: [
-            {
-              action: 'view',
-              title: 'Watch Now'
-            }
-          ]
-        });
-      }
-      
-      // Notify when match starts
-      if (timeDiff > -60000 && timeDiff <= 0) {
-        self.registration.showNotification('🔴 Match Started!', {
-          body: `${match.Team1} vs ${match.Team2} is now LIVE!`,
-          icon: 'https://i.postimg.cc/3rPWWckN/icon-192.png',
-          badge: 'https://i.postimg.cc/3rPWWckN/icon-192.png',
-          tag: `match-${match.Team1}-${match.Team2}-start`,
-          requireInteraction: true,
-          actions: [
-            {
-              action: 'view',
-              title: 'Watch Live'
-            }
-          ]
-        });
-      }
-    });
-  } catch (error) {
-    console.error('Background notification check failed:', error);
-  }
-}
-
-// Notification click handler
-self.addEventListener('notificationclick', function(event) {
+// Handle notification click
+self.addEventListener('notificationclick', event => {
   event.notification.close();
   
   if (event.action === 'view') {
+    // Open the app when notification is clicked
     event.waitUntil(
       clients.openWindow('/')
+    );
+  } else {
+    // Default action - open the app
+    event.waitUntil(
+      clients.openWindow('/')
+    );
+  }
+});
+
+// Background sync for notifications (if supported)
+self.addEventListener('sync', event => {
+  if (event.tag === 'background-sync') {
+    event.waitUntil(
+      // Fetch latest matches and check for notifications
+      fetch('https://script.google.com/macros/s/AKfycbxzx4xcwEGidoxEd7BQshkR9FKHjK5o0p8ukNY4NsKNR0EsShY7eV3MUxA2iXz1V8bmHg/exec')
+        .then(response => response.json())
+        .then(data => {
+          // Process matches and send notifications if needed
+          console.log('Background sync completed');
+        })
+        .catch(error => {
+          console.error('Background sync failed:', error);
+        })
     );
   }
 });
