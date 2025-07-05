@@ -3,7 +3,8 @@
 <head>  
   <meta charset="UTF-8" />  
   <meta name="viewport" content="width=device-width, initial-scale=1" />  
-  <title>CricStreamZone - Live Matches & Upcoming</title>  
+  <title>CricStreamZone - Live Matches & Upcoming</title>
+  <link rel="manifest" href="manifest.json">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js">  
 </script>  
   <style>  
@@ -623,6 +624,86 @@
       color: #ccc;  
       text-align: center;  
     }  
+
+    /* Notification Permission Popup */
+    .notification-popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .notification-popup.show {
+      display: flex;
+    }
+
+    .notification-content {
+      background: #222;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 90%;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .notification-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .notification-title {
+      color: #0af;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .notification-text {
+      color: #ccc;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .notification-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .notification-btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .notification-btn.allow {
+      background: #0af;
+      color: #fff;
+    }
+
+    .notification-btn.allow:hover {
+      background: #0099cc;
+    }
+
+    .notification-btn.deny {
+      background: #444;
+      color: #ccc;
+    }
+
+    .notification-btn.deny:hover {
+      background: #555;
+    }
   </style>  
 </head>  
 <body>  
@@ -642,7 +723,8 @@
   <a href="https://play.google.com/store/apps/details?id=com.genuine.leone" target="_blank">📲 Download NS Player</a>  
   <a href="#" onclick="showCategory('live'); toggleDrawer();">🏏 Live Matches</a>  
   <a href="#" onclick="showCategory('tv'); toggleDrawer();">📺 Live TV</a>  
-  <a href="#" onclick="showCategory('fm'); toggleDrawer();">📻 FM Radio</a>  
+  <a href="#" onclick="showCategory('fm'); toggleDrawer();">📻 FM Radio</a>
+  <a href="#" onclick="toggleNotifications(); toggleDrawer();">🔔 Notifications</a>
 </div>  
 <div id="drawerOverlay" onclick="toggleDrawer()"></div>
 
@@ -695,6 +777,25 @@
     </div>
   </div>
 </div>
+
+<!-- Notification Permission Popup -->
+<div id="notificationPopup" class="notification-popup">
+  <div class="notification-content">
+    <div class="notification-icon">🔔</div>
+    <div class="notification-title">Enable Match Notifications</div>
+    <div class="notification-text">
+      Get notified 15 minutes before match starts, 5 minutes before, and when match goes live!
+      <br><br>
+      📅 Never miss your favorite matches<br>
+      ⚡ Instant live alerts<br>
+      🎯 Smart timing notifications
+    </div>
+    <div class="notification-buttons">
+      <button class="notification-btn allow" onclick="enableNotifications()">Enable Notifications</button>
+      <button class="notification-btn deny" onclick="closeNotificationPopup()">Maybe Later</button>
+    </div>
+  </div>
+</div>
   
 <!-- নিচের বড় ৩টা ট্যাব -->  
 <div class="bottom-tab-btns">  
@@ -729,6 +830,219 @@ Join our official Telegram channel now!
 </div>
 
 <script>  
+// Notification System
+let notificationPermission = false;
+let notificationTimers = new Map();
+
+// Check if notifications are supported
+function isNotificationSupported() {
+  return 'Notification' in window && 'serviceWorker' in navigator;
+}
+
+// Request notification permission
+async function requestNotificationPermission() {
+  if (!isNotificationSupported()) {
+    console.log('Notifications not supported');
+    return false;
+  }
+
+  try {
+    const permission = await Notification.requestPermission();
+    notificationPermission = permission === 'granted';
+    
+    if (notificationPermission) {
+      localStorage.setItem('notificationsEnabled', 'true');
+      showNotificationStatus('✅ Notifications enabled successfully!', 'success');
+      
+      // Register service worker for background notifications
+      if ('serviceWorker' in navigator) {
+        const registration = await navigator.serviceWorker.ready;
+        console.log('Service Worker ready for notifications');
+      }
+    } else {
+      showNotificationStatus('❌ Notification permission denied', 'error');
+    }
+    
+    return notificationPermission;
+  } catch (error) {
+    console.error('Error requesting notification permission:', error);
+    return false;
+  }
+}
+
+// Show notification status
+function showNotificationStatus(message, type) {
+  const statusDiv = document.createElement('div');
+  statusDiv.innerHTML = message;
+  statusDiv.style.cssText = `
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: ${type === 'success' ? '#4CAF50' : '#f44336'};
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 10000;
+    font-size: 14px;
+    max-width: 90%;
+    text-align: center;
+  `;
+  document.body.appendChild(statusDiv);
+  
+  setTimeout(() => {
+    statusDiv.remove();
+  }, 3000);
+}
+
+// Show notification popup
+function showNotificationPopup() {
+  const popup = document.getElementById('notificationPopup');
+  popup.classList.add('show');
+}
+
+// Close notification popup
+function closeNotificationPopup() {
+  const popup = document.getElementById('notificationPopup');
+  popup.classList.remove('show');
+  localStorage.setItem('notificationPopupShown', 'true');
+}
+
+// Enable notifications
+async function enableNotifications() {
+  const success = await requestNotificationPermission();
+  closeNotificationPopup();
+  
+  if (success) {
+    scheduleAllNotifications();
+  }
+}
+
+// Toggle notifications from menu
+function toggleNotifications() {
+  if (!isNotificationSupported()) {
+    showNotificationStatus('❌ Notifications not supported on this device', 'error');
+    return;
+  }
+
+  if (Notification.permission === 'granted') {
+    // Show current status and option to disable
+    const disable = confirm('Notifications are currently enabled. Do you want to disable them?');
+    if (disable) {
+      localStorage.setItem('notificationsEnabled', 'false');
+      notificationPermission = false;
+      clearAllNotificationTimers();
+      showNotificationStatus('🔕 Notifications disabled', 'error');
+    }
+  } else {
+    showNotificationPopup();
+  }
+}
+
+// Send notification
+function sendNotification(title, body, icon = 'https://i.postimg.cc/3rPWWckN/icon-192.png') {
+  if (!notificationPermission) return;
+
+  try {
+    // Try to send via service worker first (for background)
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({
+        type: 'SHOW_NOTIFICATION',
+        title: title,
+        body: body,
+        icon: icon
+      });
+    } else {
+      // Fallback to regular notification
+      new Notification(title, {
+        body: body,
+        icon: icon,
+        badge: icon,
+        tag: 'cricket-match',
+        requireInteraction: false,
+        silent: false
+      });
+    }
+  } catch (error) {
+    console.error('Error sending notification:', error);
+  }
+}
+
+// Schedule notifications for a match
+function scheduleNotificationsForMatch(match) {
+  if (!notificationPermission) return;
+
+  const matchTime = new Date(match.MatchTime);
+  const now = new Date();
+  const matchId = `${match.Team1}-${match.Team2}-${matchTime.getTime()}`;
+
+  // Clear existing timers for this match
+  if (notificationTimers.has(matchId)) {
+    const timers = notificationTimers.get(matchId);
+    timers.forEach(timer => clearTimeout(timer));
+  }
+
+  const timers = [];
+
+  // 15 minutes before
+  const fifteenMinBefore = new Date(matchTime.getTime() - 15 * 60 * 1000);
+  if (fifteenMinBefore > now) {
+    const timer1 = setTimeout(() => {
+      sendNotification(
+        '🏏 Match Starting Soon!',
+        `${match.Team1} vs ${match.Team2} starts in 15 minutes`
+      );
+    }, fifteenMinBefore.getTime() - now.getTime());
+    timers.push(timer1);
+  }
+
+  // 5 minutes before
+  const fiveMinBefore = new Date(matchTime.getTime() - 5 * 60 * 1000);
+  if (fiveMinBefore > now) {
+    const timer2 = setTimeout(() => {
+      sendNotification(
+        '⚡ Match Starting Very Soon!',
+        `${match.Team1} vs ${match.Team2} starts in 5 minutes - Get ready!`
+      );
+    }, fiveMinBefore.getTime() - now.getTime());
+    timers.push(timer2);
+  }
+
+  // When match starts
+  if (matchTime > now) {
+    const timer3 = setTimeout(() => {
+      sendNotification(
+        '🔴 LIVE NOW!',
+        `${match.Team1} vs ${match.Team2} is now LIVE! Watch now!`
+      );
+    }, matchTime.getTime() - now.getTime());
+    timers.push(timer3);
+  }
+
+  notificationTimers.set(matchId, timers);
+}
+
+// Schedule notifications for all matches
+function scheduleAllNotifications() {
+  if (!notificationPermission || !matches.length) return;
+
+  matches.forEach(match => {
+    scheduleNotificationsForMatch(match);
+  });
+
+  console.log(`Scheduled notifications for ${matches.length} matches`);
+}
+
+// Clear all notification timers
+function clearAllNotificationTimers() {
+  notificationTimers.forEach(timers => {
+    timers.forEach(timer => clearTimeout(timer));
+  });
+  notificationTimers.clear();
+}
+
 // Search functionality - Updated
 function toggleSearch() {
   const searchInput = document.getElementById('search');
@@ -842,6 +1156,10 @@ serverList.appendChild(serverItem);
   modal.classList.add('active');
 }
 
+function closeServerModal() {
+  document.getElementById('serverModal').classList.remove('active');
+}
+
   // Telegram popup functions
   function closeTelegramPopup() {  
     document.getElementById('telegramPopup').style.display = 'none';  
@@ -854,7 +1172,19 @@ serverList.appendChild(serverItem);
       setTimeout(() => {  
         document.getElementById('telegramPopup').style.display = 'block';  
       }, 5000); // ৫ সেকেন্ড পরে দেখাবে  
-    }  
+    }
+    
+    // Check notification popup
+    const notificationPopupShown = localStorage.getItem('notificationPopupShown');
+    const notificationsEnabled = localStorage.getItem('notificationsEnabled');
+    
+    if (!notificationPopupShown && !notificationsEnabled && isNotificationSupported()) {
+      setTimeout(() => {
+        showNotificationPopup();
+      }, 8000); // Show after 8 seconds
+    } else if (notificationsEnabled === 'true') {
+      notificationPermission = true;
+    }
   });
 
   // API url (আপনার গুগল অ্যাপস স্ক্রিপ্ট / API url দিন এখানে)  
@@ -1290,6 +1620,11 @@ fetch(matchesApi)
     ...upcomingMatches.map(m => ({ ...m, isUpcoming: true })),  
   ];  
 
+  // Schedule notifications for all matches
+  if (notificationPermission) {
+    scheduleAllNotifications();
+  }
+
   // 🔥 স্মার্ট ট্যাব সিলেকশন: লাইভ না থাকলে Today দেখাবে
   if (liveCount > 0) {
     // লাইভ ম্যাচ আছে, Live ট্যাব দেখাও
@@ -1316,7 +1651,7 @@ fetch(matchesApi)
       document.getElementById('match-list').innerHTML = '<p style="text-align:center; color:#f00;">Failed to load match data.</p>';  
     });
 
-  // Service Worker for PWA
+  // Service Worker for PWA and Notifications
   if ('serviceWorker' in navigator) {  
     navigator.serviceWorker.register('sw.js').then(registration => {  
   
@@ -1552,6 +1887,12 @@ fetch(matchesApi)
             document.getElementById("countToday").innerText = `(${todayCount})`;
             document.getElementById("countUpcoming").innerText = `(${upcomingCount})`;
             
+            // Re-schedule notifications for new matches
+            if (notificationPermission) {
+              clearAllNotificationTimers();
+              scheduleAllNotifications();
+            }
+            
             renderMatches(currentSubTab);
           }
         })
@@ -1640,8 +1981,16 @@ fetch(matchesApi)
           .then(res => res.json())
           .then(data => {
             matches = data.matches || [];
+            
+            // Re-schedule notifications
+            if (notificationPermission) {
+              clearAllNotificationTimers();
+              scheduleAllNotifications();
+            }
+            
             renderMatches(currentSubTab);
-          })          .catch(e => {
+          })
+          .catch(e => {
             console.error('Refresh error:', e);
             document.getElementById('match-list').innerHTML = '<p style="text-align:center; color:#f00;">Failed to refresh data.</p>';
           });
@@ -1704,6 +2053,13 @@ fetch(matchesApi)
   window.addEventListener('online', updateNetworkStatus);
   window.addEventListener('offline', updateNetworkStatus);
   updateNetworkStatus(); // Check initial status
+
+  // Initialize notification permission on page load
+  window.addEventListener('load', () => {
+    if (localStorage.getItem('notificationsEnabled') === 'true' && Notification.permission === 'granted') {
+      notificationPermission = true;
+    }
+  });
 
 </script>  
 
