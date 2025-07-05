@@ -1,0 +1,25 @@
+{
+  "name": "CricStreamZone - Live Cricket Streaming",
+  "short_name": "CricStreamZone",
+  "description": "Watch live cricket matches with instant notifications",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#00aaff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/3rPWWckN/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://i.postimg.cc/3rPWWckN/icon-192.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["sports", "entertainment"],
+  "lang": "en",
+  "dir": "ltr"
+}
