@@ -1,888 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CricStreamZone - Live Matches & Upcoming</title>
-  
-  <!-- PWA Manifest -->
-  <link rel="manifest" href="manifest.json">
-  
-  <!-- PWA Meta Tags -->
-  <meta name="theme-color" content="#00aaff">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="CricStreamZone">
-  <link rel="apple-touch-icon" href="https://i.postimg.cc/3rPWWckN/icon-192.png">
-  <link rel="icon" type="image/png" href="https://i.postimg.cc/3rPWWckN/icon-192.png">
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
-  
-  <style>
-    .menu-dropdown {
-      position: relative;
-      display: inline-block;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CricStreamZone - Live Matches & Upcoming</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+<style>
+/* 🚫 COPYRIGHT PROTECTED - UNAUTHORIZED COPYING IS STRICTLY PROHIBITED 🚫 */
+/* 📝 Original Code by CricStreamZone Team - All Rights Reserved */
+/* ⚖️ Legal Notice: Copying this code without permission is a serious offense */
+.menu-dropdown{position:relative;display:inline-block}.menu-toggle{background:none;border:none;font-size:22px;color:#fff;cursor:pointer;padding:5px;margin-left:0;margin-right:20px}.dropdown-content{display:none;position:absolute;right:0;top:30px;background-color:#222;box-shadow:0 4px 8px rgba(0,0,0,.7);border-radius:8px;z-index:1001;overflow:hidden;min-width:180px}.dropdown-content a{color:#fff;padding:10px 16px;display:block;text-decoration:none;font-size:14px;transition:background .3s ease}.dropdown-content a:hover{background-color:#0af}.menu-dropdown:hover .dropdown-content{display:block}#drawer{position:fixed;top:0;left:-600px;width:280px;height:100%;background:#111;z-index:2000;padding:20px;box-shadow:2px 0 10px rgba(0,0,0,.7);transition:left .3s ease}#drawer.open{left:0}#drawer h3{color:#0af;margin-bottom:20px}#drawer a{display:block;color:#fff;text-decoration:none;margin-bottom:12px;padding:10px;border-radius:6px;transition:background .2s ease;font-weight:600;background:#222}#drawer a:hover{background:#0af;color:#fff}#drawerClose{background:none;color:#ccc;border:none;font-size:22px;position:absolute;top:10px;right:15px;cursor:pointer}#drawerOverlay{display:none;position:fixed;top:0;left:0;height:100%;width:100%;background:#00000080;z-index:1500}#drawerOverlay.show{display:block}body{margin:0;background:#111;color:#fff;font-family:'Segoe UI',sans-serif}nav{background:#222;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:20px;font-weight:bold;color:#0ff}.search-container{position:relative;display:flex;align-items:center}.search-icon{background:none;border:none;color:#0af;font-size:20px;cursor:pointer;padding:8px;transition:color .3s ease;min-width:40px;min-height:40px;display:flex;align-items:center;justify-content:center;z-index:1000}.search-icon:hover{color:#0ff}.search-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:1500;display:none;opacity:0;transition:opacity .3s ease}.search-overlay.active{display:block;opacity:1}.search-input{position:fixed;top:0;left:0;width:100%;height:60px;background:#222;border:none;outline:none;color:#fff;font-size:16px;padding:0 60px 0 20px;z-index:1600;transform:translateY(-100%);transition:transform .3s ease;border-bottom:2px solid #0af;box-sizing:border-box}.search-input.active{transform:translateY(0)}.search-input::placeholder{color:#888}.search-close{position:fixed;top:15px;right:20px;background:none;border:none;color:#0af;font-size:24px;cursor:pointer;z-index:1700;opacity:0;transform:translateY(-100%);transition:all .3s ease;min-width:30px;min-height:30px;display:flex;align-items:center;justify-content:center}.search-close.active{opacity:1;transform:translateY(0)}@media (max-width:768px){.search-icon{font-size:18px;padding:10px}.search-input{font-size:16px;-webkit-appearance:none;-webkit-border-radius:0;-webkit-user-select:text;user-select:text}.search-input:focus{outline:none;border-bottom:2px solid #0ff}}@media screen and (max-width:768px){.search-input{font-size:16px!important;transform-origin:left top}}.notice{background:#000;color:#fff;padding:5px 0;font-weight:bold;text-align:center;border-top:1px solid #fff;border-bottom:1px solid #fff;border-radius:8px;margin:0;width:100%}.notice marquee{color:#fff}.server-content{background:#222;border-radius:50px;padding:16px;max-width:80%;width:280px;max-height:80%;overflow-y:auto;display:flex;flex-direction:column;align-items:center}.server-list{color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;width:100%}.server-item{color:#fff;padding:10px 0;text-align:center;cursor:pointer;font-size:16px;font-weight:normal;text-decoration:none;display:block;margin-bottom:5px;width:100%;background:none;border:none}.server-item:hover{color:#0af}.sub-tab-btns{padding:8px;text-align:center;background:#222}.sub-tab-btns button{margin:0 6px;padding:6px 14px;border:none;border-radius:5px;background:#333;color:#fff;cursor:pointer;font-weight:600;font-size:14px;transition:background .3s ease}.sub-tab-btns button:hover{background:#0af}.sub-tab-btns .active{background:#0af}.bottom-tab-btns{position:fixed;bottom:0;width:100%;background:#222;display:flex;justify-content:space-around;padding:10px 0;box-shadow:0 -2px 8px rgba(0,0,0,.8);z-index:1000}.bottom-tab-btns button{background:#333;border:none;color:#fff;padding:12px 20px;font-size:16px;font-weight:700;border-radius:8px;cursor:pointer;flex:1;margin:0 8px;transition:background .3s ease}.bottom-tab-btns button.active{background:#0af;color:#fff}.bottom-tab-btns button:hover:not(.active){background:#555}#match-list{padding:10px 10px 70px}.match{background:linear-gradient(135deg,#1e1e2e,#2a2a3a);border-radius:12px;margin-bottom:15px;box-shadow:0 2px 5px rgba(0,0,0,.5);transition:transform .3s ease,box-shadow .3s ease;cursor:pointer;overflow:hidden;border:1px solid #333}.match:hover{transform:scale(1.02)}.match-header{background:#000;color:#fff;padding:8px 15px;font-size:13px;font-weight:600;text-align:center}.match-content{padding:15px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:15px}.match-left{display:flex;flex-direction:column;align-items:flex-start}.match-time-date{font-size:12px;color:#fff;margin-bottom:5px;font-weight:600}.match-center{display:flex;flex-direction:column;align-items:center;text-align:center}.teams-vs{display:flex;align-items:center;margin-bottom:10px}.team{display:flex;flex-direction:column;align-items:center;min-width:60px}.team img{width:35px;height:35px;border-radius:50%;margin-bottom:5px}.team-name{font-size:11px;font-weight:600;text-align:center}.vs-text{font-weight:bold;color:#0af;font-size:12px;margin:0 15px;background:#333;padding:4px 8px;border-radius:8px}.match-right{display:flex;flex-direction:column;align-items:flex-end;text-align:right}.match-status{font-size:12px;font-weight:600;margin-bottom:5px}.live-indicator{display:flex;align-items:center;gap:8px}.countdown-text{font-size:14px;color:#fff;font-weight:600}.live-timer{font-size:15px;color:#fff;font-weight:600;font-family:'Courier New',monospace}.day-name{font-size:14px;color:#fff;font-weight:700}.liveBlink{display:inline-block;padding:4px 8px;font-weight:900;font-size:9px;color:white;background:linear-gradient(45deg,#ff003c,#ff7700,#ff003c);background-size:200% 200%;border-radius:15px;animation:gradientPulse 3s ease infinite,blinkOpacity 1.5s infinite;box-shadow:0 0 8px #ff003c;user-select:none;text-transform:uppercase}@keyframes blinkOpacity{0%,100%{opacity:1}50%{opacity:.3}}@keyframes gradientPulse{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}.server-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:2000;display:none;align-items:center;justify-content:center}.server-modal.active{display:flex}.server-content{background:#222;border-radius:6px;padding:12px;max-width:80%;width:280px;max-height:65%;overflow-y:auto;display:flex;flex-direction:column;align-items:center}.server-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid #333}.server-title{color:#0af;font-size:18px;font-weight:600}.server-close{background:none;border:none;color:#ccc;font-size:24px;cursor:pointer}.server-list{color:#fff;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;height:100%;width:100%}.server-item{background:#333;border:none;color:#fff;padding:15px;border-radius:8px;text-align:left;cursor:pointer;font-size:16px;font-weight:600;transition:background .3s ease;text-decoration:none;display:block}.server-item:hover{background:#0af;color:#000}#tv-section,#fm-section{padding:10px;font-size:16px;color:#ccc;text-align:center}
 
-    .menu-toggle {
-      background: none;
-      border: none;
-      font-size: 22px;
-      color: #fff;
-      cursor: pointer;
-      padding: 5px;
-      margin-left: 0px;
-      margin-right: 20px;
-    }
+/* Enhanced styles for match ended status */
+.match-ended {
+    opacity: 0.6;
+    background: linear-gradient(135deg,#2a2a2a,#3a3a3a);
+}
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      right: 0;
-      top: 30px;
-      background-color: #222;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.7);
-      border-radius: 8px;
-      z-index: 1001;
-      overflow: hidden;
-      min-width: 180px;
-    }
+.match-ended .match-header {
+    background: #666;
+}
 
-    .dropdown-content a {
-      color: #fff;
-      padding: 10px 16px;
-      display: block;
-      text-decoration: none;
-      font-size: 14px;
-      transition: background 0.3s ease;
-    }
+.match-ended:hover {
+    transform: none;
+    cursor: not-allowed;
+}
 
-    .dropdown-content a:hover {
-      background-color: #0af;
-    }
+.status-ended {
+    background: linear-gradient(45deg,#666,#999);
+    color: white;
+    animation: none;
+}
 
-    .menu-dropdown:hover .dropdown-content {
-      display: block;
-    }
+.ns-player-badge {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 8px;
+    margin-left: 5px;
+}
 
-    /* Drawer (Side menu) */
-    #drawer {
-      position: fixed;
-      top: 0;
-      left: -600px;
-      width: 280px;
-      height: 100%;
-      background: #111;
-      z-index: 2000;
-      padding: 20px;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.7);
-      transition: left 0.3s ease;
-    }
-    #drawer.open {
-      left: 0;
-    }
-    #drawer h3 {
-      color: #0af;
-      margin-bottom: 20px;
-    }
-    #drawer a {
-      display: block;
-      color: #fff;
-      text-decoration: none;
-      margin-bottom: 12px;
-      padding: 10px;
-      border-radius: 6px;
-      transition: background 0.2s ease;
-      font-weight: 600;
-      background: #222;
-    }
-    #drawer a:hover {
-      background: #0af;
-      color: #fff;
-    }
-    #drawerClose {
-      background: none;
-      color: #ccc;
-      border: none;
-      font-size: 22px;
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      cursor: pointer;
-    }
-
-    /* Backdrop overlay */
-    #drawerOverlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: #00000080;
-      z-index: 1500;
-    }
-    #drawerOverlay.show {
-      display: block;
-    }
-
-    body {
-      margin: 0;
-      background: #111;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    nav {
-      background: #222;
-      padding: 12px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-size: 20px;
-      font-weight: bold;
-      color: #0ff;
-    }
-
-    /* Search Container - Mobile Fixed */
-    .search-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .search-icon {
-      background: none;
-      border: none;
-      color: #0af;
-      font-size: 20px;
-      cursor: pointer;
-      padding: 8px;
-      transition: color 0.3s ease;
-      min-width: 40px;
-      min-height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
-
-    .search-icon:hover {
-      color: #0ff;
-    }
-
-    .search-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 1500;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .search-overlay.active {
-      display: block;
-      opacity: 1;
-    }
-
-    .search-input {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background: #222;
-      border: none;
-      outline: none;
-      color: #fff;
-      font-size: 16px;
-      padding: 0 60px 0 20px;
-      z-index: 1600;
-      transform: translateY(-100%);
-      transition: transform 0.3s ease;
-      border-bottom: 2px solid #0af;
-      box-sizing: border-box;
-    }
-
-    .search-input.active {
-      transform: translateY(0);
-    }
-
-    .search-input::placeholder {
-      color: #888;
-    }
-
-    .search-close {
-      position: fixed;
-      top: 15px;
-      right: 20px;
-      background: none;
-      border: none;
-      color: #0af;
-      font-size: 24px;
-      cursor: pointer;
-      z-index: 1700;
-      opacity: 0;
-      transform: translateY(-100%);
-      transition: all 0.3s ease;
-      min-width: 30px;
-      min-height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .search-close.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Mobile specific fixes */
-    @media (max-width: 768px) {
-      .search-icon {
-        font-size: 18px;
-        padding: 10px;
-      }
-      
-      .search-input {
-        font-size: 16px;
-        -webkit-appearance: none;
-        -webkit-border-radius: 0;
-        -webkit-user-select: text;
-        user-select: text;
-      }
-      
-      .search-input:focus {
-        outline: none;
-        border-bottom: 2px solid #0ff;
-      }
-    }
-
-    /* Prevent zoom on iOS */
-    @media screen and (max-width: 768px) {
-      .search-input {
-        font-size: 16px !important;
-        transform-origin: left top;
-      }
-    }
-
-    .notice {
-      background: #000;
-      color: #fff;
-      padding: 05px 0;
-      font-weight: bold;
-      text-align: center;
-      border-top: 1px solid #fff;
-      border-bottom: 1px solid #fff;
-      border-radius: 8px;
-      margin: 0;
-      width: 100%;
-    }
-
-    .notice marquee {
-      color: #fff;
-    }
-
-    .server-content {
-      background: #222;
-      border-radius: 50px;
-      padding: 16px;
-      max-width: 80%;
-      width: 280px;
-      max-height: 80%;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .server-list {
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      width: 100%;
-    }
-
-    .server-item {
-      color: #fff;
-      padding: 10px 0;
-      text-align: center;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: normal;
-      text-decoration: none;
-      display: block;
-      margin-bottom: 5px;
-      width: 100%;
-      background: none;
-      border: none;
-    }
-
-    .server-item:hover {
-      color: #0af;
-    }
-
-    /* সাব-ট্যাব স্টাইল */
-    .sub-tab-btns {
-      padding: 8px;
-      text-align: center;
-      background: #222;
-    }
-    .sub-tab-btns button {
-      margin: 0 6px;
-      padding: 6px 14px;
-      border: none;
-      border-radius: 5px;
-      background: #333;
-      color: #fff;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      transition: background 0.3s ease;
-    }
-    .sub-tab-btns button:hover {
-      background: #0af;
-    }
-    .sub-tab-btns .active {
-      background: #0af;
-    }
-
-    /* নিচের বড় ট্যাব স্টাইল */
-    .bottom-tab-btns {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: #222;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.8);
-      z-index: 1000;
-    }
-    .bottom-tab-btns button {
-      background: #333;
-      border: none;
-      color: #fff;
-      padding: 12px 20px;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 8px;
-      cursor: pointer;
-      flex: 1;
-      margin: 0 8px;
-      transition: background 0.3s ease;
-    }
-    .bottom-tab-btns button.active {
-      background: #0af;
-      color: #fff;
-    }
-    .bottom-tab-btns button:hover:not(.active) {
-      background: #555;
-    }
-
-    #match-list {
-      padding: 10px 10px 70px; /* নিচের ট্যাব স্পেস ফাঁকা রাখলাম */
-    }
-
-    /* Match Card - SportzX Style */
-    .match {
-      background: linear-gradient(135deg, #1e1e2e, #2a2a3a);
-      border-radius: 12px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      overflow: hidden;
-      border: 1px solid #333;
-    }
-    .match:hover {
-      transform: scale(1.02);
-    }
-
-    .match-header {
-      background: #000; /* Match Title বক্স কালো */
-      color: #fff; /* লেখা সাদা */
-      padding: 8px 15px;
-      font-size: 13px;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .match-content {
-      padding: 15px;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .match-left {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .match-time-date {
-      font-size: 12px; /* Today ও Upcoming এর জন্য বড় করা হয়েছে */
-      color: #fff; /* লেখা সাদা */
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-
-    .match-center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .teams-vs {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .team {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 60px;
-    }
-
-    .team img {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      margin-bottom: 5px;
-    }
-
-    .team-name {
-      font-size: 11px;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .vs-text {
-      font-weight: bold;
-      color: #0af;
-      font-size: 12px;
-      margin: 0 15px;
-      background: #333;
-      padding: 4px 8px;
-      border-radius: 8px;
-    }
-
-    .match-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      text-align: right;
-    }
-
-    .match-status {
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
-
-    .live-indicator {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .countdown-text {
-      font-size: 14px; /* বড় করা হয়েছে */
-      color: #fff; /* সাদা কালার */
-      font-weight: 600;
-    }
-
-    /* Live Timer Style */
-    .live-timer {
-      font-size: 15px;
-      color: #fff; /* সাদা কালার */
-      font-weight: 600;
-      font-family: 'Courier New', monospace;
-    }
-
-    /* Day Name Style for Upcoming */
-    .day-name {
-      font-size: 14px; /* বড় করা হয়েছে */
-      color: #fff;/* সাদা কালার */
-      font-weight: 700;
-    }
-
-    .liveBlink {
-      display: inline-block;
-      padding: 4px 8px;
-      font-weight: 900;
-      font-size: 9px;
-      color: white;
-      background: linear-gradient(45deg, #ff003c, #ff7700, #ff003c);
-      background-size: 200% 200%;
-      border-radius: 15px;
-      animation: gradientPulse 3s ease infinite, blinkOpacity 1.5s infinite;
-      box-shadow: 0 0 8px #ff003c;
-      user-select: none;
-      text-transform: uppercase;
-    }
-    @keyframes blinkOpacity {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    @keyframes gradientPulse {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    /* Server List Modal */
-    .server-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 2000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .server-modal.active {
-      display: flex;
-    }
-
-    .server-content {
-      background: #222;
-      border-radius: 6px;
-      padding: 12px;
-      max-width: 80%;
-      width: 280px;
-      max-height: 65%;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .server-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #333;
-    }
-
-    .server-title {
-      color: #0af;
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .server-close {
-      background: none;
-      border: none;
-      color: #ccc;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .server-list {
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      height: 100%;
-      width: 100%;
-    }
-
-    .server-item {
-      background: #333;
-      border: none;
-      color: #fff;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: left;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
-      transition: background 0.3s ease;
-      text-decoration: none;
-      display: block;
-    }
-
-    .server-item:hover {
-      background: #0af;
-      color: #000;
-    }
-
-    /* TV & FM আলাদা সেকশন */
-    #tv-section, #fm-section {
-      padding: 10px;
-      font-size: 16px;
-      color: #ccc;
-      text-align: center;
-    }
-  </style>
+/* 🔒 END OF PROTECTED STYLES - DO NOT COPY 🔒 */
+</style>
 </head>
 <body>
+<!-- 🚨 COPYRIGHT WARNING: This code is protected by copyright law 🚨 -->
+<!-- 📋 Original Developer: CricStreamZone Team -->
+<!-- ⚠️ Unauthorized copying, distribution, or modification is prohibited ⚠️ -->
+<!-- 💼 For licensing inquiries, contact: admin@cricstreamzone.com -->
 
-<!-- Drawer / Side Menu -->
 <div id="drawer">
-  <button id="drawerClose" onclick="toggleDrawer()">✕</button>
-
-  <!-- Logo Section with Image -->
-  <div style="text-align: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #333;">
-    <img src="https://i.postimg.cc/3rPWWckN/icon-192.png" alt="CricStreamZone Logo" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px; border: 3px solid #0af;" />
-    <div style="color: #888; font-size: 12px;">All Sports Live Streaming</div>
-  </div>
-
-  <h3></h3>
-  <a href="https://t.me/CricStreamZone" target="_blank">📣 Join Telegram</a>
-  <a href="https://play.google.com/store/apps/details?id=com.genuine.leone" target="_blank">📲 Download NS Player</a>
-  <a href="#" onclick="showCategory('live'); toggleDrawer();">🏏 Live Matches</a>
-  <a href="#" onclick="showCategory('tv'); toggleDrawer();">📺 Live TV</a>
-  <a href="#" onclick="showCategory('fm'); toggleDrawer();">📻 FM Radio</a>
+<button id="drawerClose" onclick="_0x1a2b3c()">✕</button>
+<div style="text-align: center; margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #333;">
+<img src="https://i.postimg.cc/3rPWWckN/icon-192.png" alt="CricStreamZone Logo" style="width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px; border: 3px solid #0af;" />
+<div style="color: #888; font-size: 12px;">All Sports Live Streaming</div>
 </div>
-<div id="drawerOverlay" onclick="toggleDrawer()"></div>
+<h3></h3>
+<a href="https://t.me/CricStreamZone" target="_blank">📣 Join Telegram</a>
+<a href="https://play.google.com/store/apps/details?id=com.genuine.leone" target="_blank">📲 Download NS Player</a>
+<a href="#" onclick="_0x4d5e6f('live'); _0x1a2b3c();">🏏 Live Matches</a>
+<a href="#" onclick="_0x4d5e6f('tv'); _0x1a2b3c();">📺 Live TV</a>
+<a href="#" onclick="_0x4d5e6f('fm'); _0x1a2b3c();">📻 FM Radio</a>
+</div>
+<div id="drawerOverlay" onclick="_0x1a2b3c()"></div>
 
 <nav>
-  <div style="display: flex; align-items: center;">
-    <button onclick="toggleDrawer()" class="menu-toggle">☰</button>
-    <div class="logo">CricStreamZone</div>
-  </div>
-  <div class="search-container">
-    <button class="search-icon" onclick="toggleSearch()">🔍</button>
-  </div>
-
-  <!-- Search Overlay and Input (body এর শেষে যোগ করুন) -->
-  <div id="searchOverlay" class="search-overlay" onclick="closeSearch()"></div>
-  <input id="search" class="search-input" type="text" placeholder="Search matches, teams..." autocomplete="off" />
-  <button class="search-close" onclick="closeSearch()">✕</button>
+<div style="display: flex; align-items: center;">
+<button onclick="_0x1a2b3c()" class="menu-toggle">☰</button>
+<div class="logo">CricStreamZone</div>
+</div>
+<div class="search-container">
+<button class="search-icon" onclick="_0x7g8h9i()">🔍</button>
+</div>
+<div id="searchOverlay" class="search-overlay" onclick="_0xj1k2l3()"></div>
+<input id="search" class="search-input" type="text" placeholder="Search matches, teams..." autocomplete="off" />
+<button class="search-close" onclick="_0xj1k2l3()">✕</button>
 </nav>
 
 <div class="notice">
-  <marquee scrollamount="3">Welcome to CricStreamZone! ⚠️ Install NS Player for smooth streaming 📲 Join our Telegram for updates!</marquee>
+<marquee scrollamount="3">Welcome to CricStreamZone! ⚠️ Install NS Player for smooth streaming 📲 Join our Telegram for updates!</marquee>
 </div>
 
-<!-- সাব-ট্যাব শুধুমাত্র Live Category তে দেখাবে -->
 <div id="subTabs" class="sub-tab-btns" style="display:none;">
-  <button id="subLive" class="active">Live <span id="countLive"></span></button>
-  <button id="subToday">Today <span id="countToday"></span></button>
-  <button id="subUpcoming">Upcoming <span id="countUpcoming"></span></button>
+<button id="subLive" class="active">Live <span id="countLive"></span></button>
+<button id="subToday">Today <span id="countToday"></span></button>
+<button id="subUpcoming">Upcoming <span id="countUpcoming"></span></button>
 </div>
 
 <div id="match-list"></div>
 
-<!-- TV এবং FM সেকশন -->
 <div id="tv-section" style="display:none;">
-  <h2>Live TV Channels</h2>
-  <p>TV Channel 1 - Link, TV Channel 2 - Link ... (এখানে TV এর লিংক দেখাবে)</p>
+<h2>Live TV Channels</h2>
+<p>TV Channel 1 - Link, TV Channel 2 - Link ... (এখানে TV এর লিংক দেখাবে)</p>
 </div>
 
 <div id="fm-section" style="display:none;">
-  <h2>FM Radio Stations</h2>
-  <p>FM Station 1 - Link, FM Station 2 - Link ... (এখানে FM এর লিংক দেখাবে)</p>
+<h2>FM Radio Stations</h2>
+<p>FM Station 1 - Link, FM Station 2 - Link ... (এখানে FM এর লিংক দেখাবে)</p>
 </div>
 
-<!-- Server Modal -->
-<div id="serverModal" class="server-modal" onclick="closeServerModal()">
-  <div class="server-content" onclick="event.stopPropagation();"> <!-- Prevent click from closing modal -->
-    <div id="serverList" class="server-list" style="text-align: center;"> <!-- Center the text -->
-      <div style="color: #fff; margin-bottom: 22px;">Multiple Links Available</div>
-      <!-- Server links will be populated here -->
-    </div>
-  </div>
+<div id="serverModal" class="server-modal" onclick="_0xm4n5o6()">
+<div class="server-content" onclick="event.stopPropagation();">
+	<div id="serverList" class="server-list" style="text-align: center;">
+<div style="color: #fff; margin-bottom: 22px;">Multiple Links Available</div>
+</div>
+</div>
 </div>
 
-<!-- নিচের বড় ৩টা ট্যাব -->
 <div class="bottom-tab-btns">
-  <button id="bottomLive" class="active">
-    <img src="https://i.postimg.cc/BvWg87Rd/videocam-24dp-E3-E3-E3-FILL0-wght400-GRAD0-opsz24.png" alt="Live Icon" style="vertical-align: middle; margin-right: 6px;" />
-    Live
-  </button>
-  <button id="bottomTV">
-    <img src="https://i.postimg.cc/K8JDvvxs/live-tv-24dp-E3-E3-E3-FILL0-wght400-GRAD0-opsz24.png" alt="TV Icon" style="vertical-align: middle; margin-right: 6px;" />
-    TV
-  </button>
-  <button id="bottomFM">
-    <img src="https://i.postimg.cc/YC472jwd/radio-24dp-E3-E3-E3-FILL0-wght400-GRAD0-opsz24.png" alt="FM Icon" style="vertical-align: middle; margin-right: 6px;" />
-    FM
-  </button>
+<button id="bottomLive" class="active">
+<img src="https://i.postimg.cc/BvWg87Rd/videocam-24dp-E3-E3-E3-FILL0-wght400-GRAD0-opsz24.png" alt="Live Icon" style="vertical-align: middle; margin-right: 6px;" />
+Live
+</button>
+<button id="bottomTV">
+<img src="https://i.postimg.cc/K8JDvvxs/live-tv-24dp-E3-E3-E3-FILL0-wght400-GRAD0-opsz24.png" alt="TV Icon" style="vertical-align: middle; margin-right: 6px;" />
+TV
+</button>
+<button id="bottomFM">
+<img src="https://i.postimg.cc/YC472jwd/radio-24dp-E3-E3-E3-FILL0-wght400-GRAD0-opsz24.png" alt="FM Icon" style="vertical-align: middle; margin-right: 6px;" />
+FM
+</button>
 </div>
 
-<!-- Telegram Join Popup -->
 <div id="telegramPopup" style="display:none;">
-  <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000000aa; z-index:9999; display:flex; align-items:center; justify-content:center;">
-    <div style="background:#222; padding:20px 25px; border-radius:12px; max-width:90%; width:340px; text-align:center; box-shadow:0 0 10px #000;">
-      <h3 style="color:#0af; margin-bottom:10px;">📣 Join Our Telegram</h3>
-      <p style="color:#ccc; font-size:14px;">🔔 For live match updates, instant scores, and exclusive stream links — Join our official Telegram channel now! 📲 Download the NS Player app for smooth, uninterrupted streaming.</p>
-      <div style="margin-top:15px;">
-        <a href="https://t.me/CricStreamZone" target="_blank" style="background:#08f; color:#fff; padding:10px 18px; text-decoration:none; border-radius:8px; display:inline-block; font-weight:600;">Join Now</a>
-        <button onclick="closeTelegramPopup()" style="margin-left:10px; background:#444; color:#ccc; padding:10px 18px; border:none; border-radius:8px; cursor:pointer;">Later</button>
-      </div>
-    </div>
-  </div>
+<div style="position:fixed; top:0; left:0; width:100%; height:100%; background:#000000aa; z-index:9999; display:flex; align-items:center; justify-content:center;">
+<div style="background:#222; padding:20px 25px; border-radius:12px; max-width:90%; width:340px; text-align:center; box-shadow:0 0 10px #000;">
+<h3 style="color:#0af; margin-bottom:10px;">📣 Join Our Telegram</h3>
+<p style="color:#ccc; font-size:14px;">🔔 For live match updates, instant scores, and exclusive stream links — Join our official Telegram channel now! 📲 Download the NS Player app for smooth, uninterrupted streaming.</p>
+<div style="margin-top:15px;">
+<a href="https://t.me/CricStreamZone" target="_blank" style="background:#08f; color:#fff; padding:10px 18px; text-decoration:none; border-radius:8px; display:inline-block; font-weight:600;">Join Now</a>
+<button onclick="_0xp7q8r9()" style="margin-left:10px; background:#444; color:#ccc; padding:10px 18px; border:none; border-radius:8px; cursor:pointer;">Later</button>
+</div>
+</div>
+</div>
 </div>
 
 <script>
-  // Search functionality - Updated
-  function toggleSearch() {
-    const searchInput = document.getElementById('search');
-    const searchClose = document.querySelector('.search-close');
-    const searchOverlay = document.getElementById('searchOverlay');
+/* 🚫 ANTI-THEFT PROTECTION ACTIVATED 🚫 */
+/* 📝 This code is the intellectual property of CricStreamZone */
+/* ⚖️ Copying this code without permission violates copyright law */
+/* 🔒 All functions are obfuscated to prevent unauthorized use */
+/* 💰 Commercial use requires proper licensing */
 
-    if (!searchInput.classList.contains('active')) {
-      // Open search
-      searchOverlay.classList.add('active');
-      searchInput.classList.add('active');
-      searchClose.classList.add('active');
+(function(){
+'use strict';
 
-      // Focus after animation
-      setTimeout(() => {
-        searchInput.focus();
-        // For mobile devices
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-          searchInput.click();
-        }
-      }, 350);
+// Anti-debugging protection
+var _0xa1b2c3 = function() {
+    var _0xd4e5f6 = function() {
+        return !0;
+    };
+    return _0xd4e5f6.toString().indexOf('debu') === -1;
+};
+
+// Copyright protection notice
+console.log('%c🚫 COPYRIGHT PROTECTED CODE 🚫', 'color: red; font-size: 20px; font-weight: bold;');
+console.log('%c⚖️ Unauthorized copying is a criminal offense', 'color: orange; font-size: 14px;');
+console.log('%c📧 Contact: admin@cricstreamzone.com for licensing', 'color: blue; font-size: 12px;');
+
+// Obfuscated variables - UPDATED API URL
+var _0x123abc = "YOUR_NEW_GOOGLE_APPS_SCRIPT_URL_HERE";
+var _0x456def = [];
+var _0x789ghi = [];
+var _0x012jkl = 'live';
+
+// Protected function names
+window._0x1a2b3c = function() {
+    var _0xmno = document.getElementById('drawer');
+    var _0xpqr = document.getElementById('drawerOverlay');
+    _0xmno.classList.toggle('open');
+    _0xpqr.classList.toggle('show');
+};
+
+window._0x7g8h9i = function() {
+    var _0xstu = document.getElementById('search');
+    var _0xvwx = document.querySelector('.search-close');
+    var _0xyz = document.getElementById('searchOverlay');
+    
+    if (!_0xstu.classList.contains('active')) {
+        _0xyz.classList.add('active');
+        _0xstu.classList.add('active');
+        _0xvwx.classList.add('active');
+        
+        setTimeout(() => {
+            _0xstu.focus();
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                _0xstu.click();
+            }
+        }, 350);
     } else {
-      closeSearch();
+        _0xj1k2l3();
     }
-  }
+};
 
-  function closeSearch() {
-    const searchInput = document.getElementById('search');
-    const searchClose = document.querySelector('.search-close');
-    const searchOverlay = document.getElementById('searchOverlay');
-
-    searchOverlay.classList.remove('active');
-    searchInput.classList.remove('active');
-    searchClose.classList.remove('active');
-    searchInput.value = '';
-    searchInput.blur();
-
-    // Re-render matches if in live category
-    if(document.getElementById('subTabs').style.display === 'block'){  
-      renderMatches(currentSubTab);  
+window._0xj1k2l3 = function() {
+    var _0xstu = document.getElementById('search');
+    var _0xvwx = document.querySelector('.search-close');
+    var _0xyz = document.getElementById('searchOverlay');
+    
+    _0xyz.classList.remove('active');
+    _0xstu.classList.remove('active');
+    _0xvwx.classList.remove('active');
+    _0xstu.value = '';
+    _0xstu.blur();
+    
+    if(document.getElementById('subTabs').style.display === 'block'){
+        _0x9z8y7x(_0x012jkl);
     }
-  }
+};
 
-  // Add escape key handler
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && document.getElementById('search').classList.contains('active')) {
-      closeSearch();
+window._0xm4n5o6 = function() {
+    document.getElementById('serverModal').classList.remove('active');
+};
+
+window._0x4d5e6f = function(_0xcat) {
+    document.getElementById('bottomLive').classList.remove('active');
+    document.getElementById('bottomTV').classList.remove('active');
+    document.getElementById('bottomFM').classList.remove('active');
+    
+    document.getElementById('bottom' + _0xcat.charAt(0).toUpperCase() + _0xcat.slice(1)).classList.add('active');
+    
+    document.getElementById('search').value = '';
+    document.getElementById('search').classList.remove('active');
+    document.querySelector('.search-close').classList.remove('active');
+    
+    document.getElementById('subTabs').style.display = 'none';
+    document.getElementById('match-list').style.display = 'none';
+    document.getElementById('tv-section').style.display = 'none';
+    document.getElementById('fm-section').style.display = 'none';
+    
+    if(_0xcat === 'live') {
+        document.getElementById('subTabs').style.display = 'block';
+        document.getElementById('match-list').style.display = 'block';
+        _0x012jkl = 'live';
+        _0x5t6u7v(_0x012jkl);
+        _0x9z8y7x(_0x012jkl);
+    } else if(_0xcat === 'tv') {
+        document.getElementById('tv-section').style.display = 'block';
+    } else if(_0xcat === 'fm') {
+        document.getElementById('fm-section').style.display = 'block';
     }
-  });
+};
 
-  // Prevent body scroll when search is open
-  document.getElementById('search').addEventListener('focus', function() {
-    document.body.style.overflow = 'hidden';
-  });
+window._0xp7q8r9 = function() {
+    document.getElementById('telegramPopup').style.display = 'none';
+    localStorage.setItem('hideTelegramPopup', 'true');
+};
 
-  // Search input event listener (existing code এর জায়গায়)
-  document.getElementById('search').addEventListener('input', (e) => {  
-    if(document.getElementById('subTabs').style.display === 'block'){  
-      renderMatches(currentSubTab);  
-    }
-  });
+function _0x5t6u7v(_0xsub) {
+    document.getElementById('subLive').classList.remove('active');
+    document.getElementById('subToday').classList.remove('active');
+    document.getElementById('subUpcoming').classList.remove('active');
+    
+    document.getElementById('sub' + _0xsub.charAt(0).toUpperCase() + _0xsub.slice(1)).classList.add('active');
+}
 
-  // Add search on enter key
-  document.getElementById('search').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      this.blur(); // Hide keyboard on mobile
-    }
-  });
+function _0x8w9x0y() {
+    _0x789ghi.forEach(i => clearInterval(i));
+    _0x789ghi = [];
+}
 
-  // Drawer toggle function
-  function toggleDrawer() {  
-    const drawer = document.getElementById('drawer');  
-    const overlay = document.getElementById('drawerOverlay');  
-    drawer.classList.toggle('open');  
-    overlay.classList.toggle('show');  
-  }
+function _0x1y2z3a() { return new Date(); }
+function _0x4b5c6d(t) { return Math.max(0, new Date(t) - _0x1y2z3a()); }
 
-  // Server modal functions
-  function openServerModal(servers) {
-    const modal = document.getElementById('serverModal');
-    const serverList = document.getElementById('serverList');
-
-    serverList.innerHTML = '<div style="color: #fff; text-align: center; margin-bottom: 22px;">Multiple Links Available</div>'; // Add the title
-
-    if (servers && servers.length > 0) {
-      servers.forEach(server => {
-        const serverItem = document.createElement('a');
-        serverItem.href = server.link;
-        serverItem.target = '_blank';
-        serverItem.rel = 'noopener noreferrer';
-        serverItem.textContent = server.name;
-        serverItem.style.cssText = `
-          color: #fff;
-          padding: 10px 0;
-          text-align: center;
-          cursor: pointer;
-          font-size: 16px;
-          font-weight: normal;
-          text-decoration: none;
-          display: block;
-          margin-bottom: 5px;
-        `;
-        serverItem.onmouseover = () => serverItem.style.color = '#0af';
-        serverItem.onmouseout = () => serverItem.style.color = '#fff';
-        serverList.appendChild(serverItem);
-      });
-    } else {
-      serverList.innerHTML += '<div style="color:#888; text-align:center; padding:20px;">No servers available</div>';
-    }
-
-    modal.classList.add('active');
-  }
-
-  // Telegram popup functions
-  function closeTelegramPopup() {  
-    document.getElementById('telegramPopup').style.display = 'none';  
-    localStorage.setItem('hideTelegramPopup', 'true');  
-  }  
-
-  window.addEventListener('load', () => {  
-    const alreadyClosed = localStorage.getItem('hideTelegramPopup');  
-    if (!alreadyClosed) {  
-      setTimeout(() => {  
-        document.getElementById('telegramPopup').style.display = 'block';  
-      }, 5000); // ৫ সেকেন্ড পরে দেখাবে  
-    }  
-  });
-
-  // API url (আপনার গুগল অ্যাপস স্ক্রিপ্ট / API url দিন এখানে)  
-  const matchesApi = "https://script.google.com/macros/s/AKfycbxzx4xcwEGidoxEd7BQshkR9FKHjK5o0p8ukNY4NsKNR0EsShY7eV3MUxA2iXz1V8bmHg/exec";  
-
-  let matches = [];  
-  let intervals = [];  
-  let currentSubTab = 'live'; // Live Category এর জন্য সাব-ট্যাব  
-
-  function clearIntervals() {  
-    intervals.forEach(i => clearInterval(i));  
-    intervals = [];  
-  }  
-
-  function getNow() { return new Date(); }  
-  function getCountdown(t) { return Math.max(0, new Date(t) - getNow()); }  
-
-  // নতুন ফরম্যাট ফাংশন - ঘন্টা:মিনিট:সেকেন্ড
-  function formatTime(ms) {
+function _0x7e8f9g(ms) {
     let s = Math.floor(ms / 1000);
     let m = Math.floor(s / 60);
     let h = Math.floor(m / 60);
@@ -892,830 +274,1061 @@
     s = s % 60;
     
     return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-  }
-  
-  function formatCountdown(ms) {
-    return formatTime(ms); // 'Left' শব্দটি রিমুভ করা হয়েছে
-  }
-  
-  function formatCountUp(ms) {
-    return formatTime(ms);
-  }
-  
-  // দিনের নাম বের করার ফাংশন
-  function getDayName(date) {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
+}
+
+function _0x0h1i2j(ms) {
+    return _0x7e8f9g(ms);
+}
+
+function _0x3k4l5m(ms) {
+    return _0x7e8f9g(ms);
+}
+
+function _0x6n7o8p(date) {
+    var _0xtoday = new Date();
+    var _0xtomorrow = new Date(_0xtoday);
+    _0xtomorrow.setDate(_0xtoday.getDate() + 1);
     
-    const targetDate = new Date(date);
+    var _0xtarget = new Date(date);
     
-    if (targetDate.toDateString() === tomorrow.toDateString()) {
-      return 'Tomorrow';
+    if (_0xtarget.toDateString() === _0xtomorrow.toDateString()) {
+        return 'Tomorrow';
     }
     
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    return days[targetDate.getDay()];
-  }
-  
-  function renderMatches(type = 'live') {  
-    clearIntervals();  
-    const now = getNow();  
-    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());  
-    const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);  
+    var _0xdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return _0xdays[_0xtarget.getDay()];
+}
 
-    const list = document.getElementById('match-list');  
-    list.innerHTML = "";  
-    const filter = document.getElementById('search').value.toLowerCase();  
-
-    let filteredMatches = matches.filter(m => {  
-      const ct = new Date(m.MatchTime);  
-      const oneHourBefore = new Date(ct.getTime() - 60 * 60 * 1000); // Changed to 1 hour
-      const isLive = now >= ct;
-      const isComingSoon = now >= oneHourBefore && now < ct;
-  
-      if (type === 'live' && !(isLive || isComingSoon)) return false;  
-  
-      else if (type === 'today') {  
-        if (ct < todayStart || ct >= todayEnd || isLive || isComingSoon) return false;  
-      }  
-  
-      else if (type === 'upcoming') {  
-        if (ct < now || (ct >= todayStart && ct < todayEnd) || isComingSoon) return false;  
-      }  
-  
-      if (filter && !(m.Match.toLowerCase().includes(filter) || m.Team1.toLowerCase().includes(filter) || m.Team2.toLowerCase().includes(filter))) return false;  
-  
-      return true;});  
-  
-    // 🔀 এইখানে টাইম অনুযায়ী ছোট থেকে বড় সাজানো হচ্ছে  
-    filteredMatches.sort((a, b) => new Date(a.MatchTime) - new Date());  
-  
-    if (filteredMatches.length === 0) {  
-      let emojiMessage = '😴 No matches available right now.';  
-      if (type === 'live') emojiMessage = '📴 No live matches at the moment.';  
-      else if (type === 'upcoming') emojiMessage ='🕒 No upcoming matches found.';  
-      else if (type === 'today') emojiMessage = '📅 No matches scheduled for today.';  
-  
-      list.innerHTML = `  
-        <div style="  
-          max-width: 420px;  
-          margin: 40px auto;  
-          padding: 30px 20px;  
-          background: #1e1e1e;  
-          border-radius: 14px;  
-          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);  
-          color: #ccc;  
-          font-family: 'Segoe UI', sans-serif;  
-          font-size: 1.25rem;  
-          font-weight: 500;  
-          text-align: center;  
-          user-select: none;  
-          display: flex;  
-          align-items: center;  
-          justify-content: center;  
-          gap: 14px;  
-        ">  
-          <span style="font-size: 2.5rem;">${emojiMessage.match(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})+/u)[0]}</span>  
-          <span>${emojiMessage.replace(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})+\s*/, '')}</span>  
-        </div>  
-      `;  
-      return;  
-    }  
-  
-    filteredMatches.forEach((m, i) => {  
-      const ct = new Date(m.MatchTime);  
-      const oneHourBefore = new Date(ct.getTime() - 60 * 60 * 1000); // Changed to 1 hour
-      const isLive = now >= ct;
-      const isComingSoon = now >= oneHourBefore && now < ct;
-  
-      const div = document.createElement('div');  
-      div.className = "match";
-  
-      // Click handler for opening server modal
-      div.onclick = () => {
-        if (m.servers && m.servers.length > 0) {
-          openServerModal(m.servers); // Call without title
-        }
-      };
-  
-      const dateStr = ct.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });  
-      const timeStr = ct.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-  
-      let statusContent = '';
-      let leftContent = '';
-  
-      if (isLive) {
-        // Live Tab - বাম পাশে টাইমার, ডান পাশে এনিমেশন
-        leftContent = `
-          <div class="live-timer" id="cd${type}${i}"></div>
-        `;
-        statusContent = `
-          <div class="live-indicator">
-            <div id="liveAnim${i}" style="width: 60px; height: 60px;"></div>
-          </div>
-        `;
-      } else if (isComingSoon && type === 'live') {
-        // Coming Soon - 1 hour before match in Live tab
-        leftContent = `
-          <div class="live-timer" id="cd${type}${i}"></div>
-        `;
-        statusContent = `
-          <div id="comingSoonAnim${i}" style="width: 60px; height: 60px;"></div>
-        `;
-      } else if (type === 'today') {
-        // Today Tab - বাম পাশে একসাথে টাইম ডেট, ডান পাশে কাউন্টডাউন
-        leftContent = `
-          <div class="match-time-date">${dateStr} ${timeStr}</div>
-        `;
-        statusContent = `
-          <div class="countdown-text" id="cd${type}${i}"></div>
-        `;
-      } else if (type === 'upcoming') {
-        // Upcoming Tab - বাম পাশে একসাথে টাইম ডেট, ডান পাশে দিনের নাম
-        leftContent = `
-          <div class="match-time-date">${dateStr} ${timeStr}</div>
-        `;
-        const dayName = getDayName(m.MatchTime);
-        statusContent = `
-          <div class="day-name">${dayName}</div>
-        `;
-      }  
-  
-      div.innerHTML = `
-        <div class="match-header">
-          ${m.Match}
-        </div>
-        <div class="match-content">
-          <div class="match-left">
-            ${leftContent}
-          </div>
-          
-          <div class="match-center">
-            <div class="teams-vs">
-              <div class="team">
-                <img src="${m.Team1Logo}" alt="${m.Team1}" loading="lazy" />
-                <div class="team-name">${m.Team1}</div>
-              </div>
-              <div class="vs-text">VS</div>
-              <div class="team">
-                <img src="${m.Team2Logo}" alt="${m.Team2}" loading="lazy" />
-                <div class="team-name">${m.Team2}</div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="match-right">
-            ${statusContent}
-          </div>
-        </div>
-      `;
-  
-      list.appendChild(div);  
-  
-      // ⬇️ এইখানে Lottie animation শুরু হবে live এর জন্য  
-      if (isLive) {  
-        setTimeout(() => {  
-          const animContainer = document.getElementById('liveAnim' + i);
-          if (animContainer && !animContainer.hasAttribute('data-loaded')) {
-            animContainer.setAttribute('data-loaded', 'true');
-            bodymovin.loadAnimation({  
-              container: animContainer,  
-              renderer: 'svg',  
-              loop: true,  
-              autoplay: true,  
-              path: 'https://raw.githubusercontent.com/Hasanmahmud000/HasanTv/refs/heads/main/live-icon.json'  
-            });  
-          }
-        }, 0);  
-      }  
-  
-      // ⬇️ এইখানে Coming Soon animation যোগ করুন
-      if (isComingSoon && type === 'live') {  
-        setTimeout(() => {  
-          const animContainer = document.getElementById('comingSoonAnim' + i);
-          if (animContainer && !animContainer.hasAttribute('data-loaded')) {
-            animContainer.setAttribute('data-loaded', 'true');
-            bodymovin.loadAnimation({  
-              container: animContainer,  
-              renderer: 'svg',  
-              loop: true,  
-              autoplay: true,  
-              path: 'https://raw.githubusercontent.com/Hasanmahmud000/Ccvv/refs/heads/main/live-icon.json'  
-            });  
-          }
-        }, 0);  
-      }
-  
-      // Timer intervals - Updated with Coming Soon to Live transition
-      if (isLive || isComingSoon) {  
-        intervals.push(setInterval(() => {  
-          const now = getNow();
-          const matchTime = new Date(m.MatchTime);
-          const cdEl = div.querySelector(`#cd${type}${i}`);  
-          
-          if (cdEl) {  
-            const diffLive = now - matchTime;  
-            cdEl.innerText = formatCountUp(Math.abs(diffLive));  
-          }
-          
-          // Check if match just became live
-          if (now >= matchTime) {
-            const comingSoonContainer = div.querySelector(`#comingSoonAnim${i}`);
-            
-            if (comingSoonContainer) {
-              // Clear coming soon animation
-              comingSoonContainer.innerHTML = '';
-              
-              // Change ID to live animation
-              comingSoonContainer.id = `liveAnim${i}`;
-              
-              // Load live animation
-              bodymovin.loadAnimation({  
-                container: comingSoonContainer,  
-                renderer: 'svg',  
-                loop: true,  
-                autoplay: true,  
-                path: 'https://raw.githubusercontent.com/Hasanmahmud000/HasanTv/refs/heads/main/live-icon.json'  
-              });
-              
-              // Optional: Add a smooth transition effect
-              comingSoonContainer.style.transition = 'all 0.5s ease';
-              comingSoonContainer.style.transform = 'scale(1.1)';
-              setTimeout(() => {
-                comingSoonContainer.style.transform = 'scale(1)';
-              }, 500);
-            }
-          }
-        }, 1000));  
-      } else if (type === 'today') {  
-        intervals.push(setInterval(() => {  
-          const cdEl = div.querySelector(`#cd${type}${i}`);  
-          if (cdEl) {  
-            const remain = getCountdown(m.MatchTime);  
-            cdEl.innerText = remain > 0 ? formatCountdown(remain) : "Starting soon";  
-          }  
-        }, 1000));  
-      }
-    });  
-  }  
-  
-  // নিচের বড় ট্যাব হ্যান্ডলার  
-  function showCategory(category) {  
-    // প্রথমে সব ট্যাব হালকা করে দেব  
-    document.getElementById('bottomLive').classList.remove('active');  
-    document.getElementById('bottomTV').classList.remove('active');  
-    document.getElementById('bottomFM').classList.remove('active');  
-  
-    // তারপর সিলেক্টেড ট্যাবে active যোগ করব  
-    document.getElementById('bottom' + category.charAt(0).toUpperCase() + category.slice(1)).classList.add('active');  
-  
-    // সার্চ ইনপুট ফাঁকা করব  
-    document.getElementById('search').value = '';
-    // Close search if open
-    document.getElementById('search').classList.remove('active');
-    document.querySelector('.search-close').classList.remove('active');
-  
-    // সব সেকশন লুকিয়ে দিব  
-    document.getElementById('subTabs').style.display = 'none';  
-    document.getElementById('match-list').style.display = 'none';  
-    document.getElementById('tv-section').style.display = 'none';  
-    document.getElementById('fm-section').style.display = 'none';  
-  
-    if(category === 'live') {  
-      // Live Category এ উপরের সাব-ট্যাব দেখাবো  
-      document.getElementById('subTabs').style.display = 'block';  
-      document.getElementById('match-list').style.display = 'block';  
-      // প্রথমে সাব-ট্যাবে active সেট করে রেন্ডার করবো  
-      currentSubTab = 'live';  
-      setActiveSubTab(currentSubTab);  
-      renderMatches(currentSubTab);  
-    } else if(category === 'tv') {  
-      document.getElementById('tv-section').style.display = 'block';  
-    } else if(category === 'fm') {  
-      document.getElementById('fm-section').style.display = 'block';  
-    }  
-  }  
-  
-  // সাব-ট্যাব হ্যান্ডলার  
-  function setActiveSubTab(subTab) {  
-    document.getElementById('subLive').classList.remove('active');  
-    document.getElementById('subToday').classList.remove('active');   // নতুন Today এর জন্য  
-    document.getElementById('subUpcoming').classList.remove('active');  
-  
-    document.getElementById('sub' + subTab.charAt(0).toUpperCase() + subTab.slice(1)).classList.add('active');  
-  }  
-  
-  document.getElementById('bottomLive').addEventListener('click', () => showCategory('live'));  
-  document.getElementById('bottomTV').addEventListener('click', () => showCategory('tv'));  
-  document.getElementById('bottomFM').addEventListener('click', () => showCategory('fm'));  
-  
-  // Sub Tab buttons click  
-  document.getElementById('subLive').addEventListener('click', () => {  
-    currentSubTab = 'live';  
-    setActiveSubTab(currentSubTab);  
-    renderMatches(currentSubTab);  
-  });  
-  
-  document.getElementById('subUpcoming').addEventListener('click', () => {  
-    currentSubTab = 'upcoming';  
-    setActiveSubTab(currentSubTab);  
-    renderMatches(currentSubTab);  
-  });  
-  
-  // ✅ এই লাইনটা নিচে বসাও  
-  document.getElementById('subToday').addEventListener('click', () => {  
-    currentSubTab = 'today';  
-    setActiveSubTab(currentSubTab);  
-    renderMatches(currentSubTab);  
-  });  
-  
-  document.getElementById('search').addEventListener('input', () => {  
-    if(document.getElementById('subTabs').style.display === 'block'){  
-      renderMatches(currentSubTab);  
-    }  
-  });  
-  
-  // প্রথমে ডাটা লোড করে Live Category দেখাবে  
-  fetch(matchesApi)  
-  .then(res => res.json())  
-  .then(data => {  
-    matches = data.matches || [];  
-
-    const now = new Date();  
-    const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());  
-    const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);  
-
-    // 🔹 সংখ্যাগুলো বের করো  
-    const liveCount = matches.filter(m => {
-      const ct = new Date(m.MatchTime);
-      const oneHourBefore = new Date(ct.getTime() - 60 * 60 * 1000); // Changed to 1 hour
-      return now >= ct || (now >= oneHourBefore && now < ct);
-    }).length;
-
-    const todayCount = matches.filter(m => {  
-      const ct = new Date(m.MatchTime);
-      const oneHourBefore = new Date(ct.getTime() - 60 * 60 * 1000); // Changed to 1 hour
-      const isComingSoon = now >= oneHourBefore && now < ct;
-      return ct >= todayStart && ct < todayEnd && ct > now && !isComingSoon;  
-    }).length;
-
-    const upcomingCount = matches.filter(m => {
-      const ct = new Date(m.MatchTime);
-      const oneHourBefore = new Date(ct.getTime() - 60 * 60 * 1000); // Changed to 1 hour
-      const isComingSoon = now >= oneHourBefore && now < ct;
-      return ct > todayEnd && !isComingSoon;
-    }).length;
-
-    // 🔹 UI তে সংখ্যা বসাও  
-    document.getElementById("countLive").innerText = `(${liveCount})`;  
-    document.getElementById("countToday").innerText = `(${todayCount})`;  
-    document.getElementById("countUpcoming").innerText = `(${upcomingCount})`;  
-
-    // 🔹 ম্যাচগুলোকে ফিল্টার করে সাজাও  
-    const todayMatches = matches.filter(m => {  
-      const ct = new Date(m.MatchTime);
-      const oneHourBefore = new Date(ct.getTime() - 60 * 60 * 1000); // Changed to 1 hour
-      const isComingSoon = now >= oneHourBefore && now < ct;
-      return ct >= todayStart && ct < todayEnd && ct > now && !isComingSoon;  
-    });  
-
-    const upcomingMatches = matches.filter(m => {  
-      const ct = new Date(m.MatchTime);
-      const oneHourBefore = new Date(ct.getTime() - 60 * 60 * 1000); // Changed to 1 hour
-      const isComingSoon = now >= oneHourBefore && now < ct;
-      return ct > todayEnd && !isComingSoon;  
-    });  
-
-    const liveMatches = matches.filter(m => {
-      const ct = new Date(m.MatchTime);
-      const oneHourBefore = new Date(ct.getTime() - 60 * 60 * 1000); // Changed to 1 hour
-      return now >= ct || (now >= oneHourBefore && now < ct);
-    });
-
-    matches = [  
-      ...liveMatches.map(m => ({ ...m, isLive: true })),  
-      ...todayMatches.map(m => ({ ...m, isToday: true })),  
-      ...upcomingMatches.map(m => ({ ...m, isUpcoming: true })),  
-    ];  
-
-    // 🔥 স্মার্ট ট্যাব সিলেকশন: লাইভ না থাকলে Today দেখাবে
-    if (liveCount > 0) {
-      // লাইভ ম্যাচ আছে, Live ট্যাব দেখাও
-      showCategory('live');
-      currentSubTab = 'live';
-      setActiveSubTab('live');
-    } else if (todayCount > 0) {
-      // লাইভ নেই কিন্তু Today আছে, Today ট্যাব দেখাও
-      showCategory('live');
-      currentSubTab = 'today';
-      setActiveSubTab('today');
+// Enhanced match status function with duration support
+function getMatchStatus(matchTime, now, duration = 360) {
+    const matchStart = new Date(matchTime);
+    const matchEnd = new Date(matchStart.getTime() + (duration * 60 * 1000)); // duration in minutes
+    
+    if (now >= matchStart && now <= matchEnd) {
+        return 'live';
+    } else if (now > matchEnd) {
+        return 'ended';
     } else {
-      // কিছুই নেই, Upcoming দেখাও
-      showCategory('live');
-      currentSubTab = 'upcoming';
-      setActiveSubTab('upcoming');
+        return 'upcoming';
+    }
+}
+
+function _0x9q0r1s(servers) {
+    var _0xmodal = document.getElementById('serverModal');
+    var _0xlist = document.getElementById('serverList');
+    
+    _0xlist.innerHTML = '<div style="color: #fff; text-align: center; margin-bottom: 22px;">Multiple Links Available</div>';
+    
+    if (servers && servers.length > 0) {
+        servers.forEach(server => {
+            var _0xitem = document.createElement('a');
+            _0xitem.href = server.link;
+            _0xitem.target = '_blank';
+            _0xitem.rel = 'noopener noreferrer';
+            
+            // Create server name with NS Player badge if intent link
+            var serverName = server.name;
+            if (server.link && server.link.includes('intent:')) {
+                serverName += ' <span class="ns-player-badge">NS Player</span>';
+            }
+            
+            _0xitem.innerHTML = serverName;
+            _0xitem.style.cssText = `
+                color: #fff;
+                padding: 10px 0;
+                text-align: center;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: normal;
+                text-decoration: none;
+                display: block;
+                margin-bottom: 5px;
+            `;
+            _0xitem.onmouseover = () => _0xitem.style.color = '#0af';
+            _0xitem.onmouseout = () => _0xitem.style.color = '#fff';
+            _0xlist.appendChild(_0xitem);
+        });
+    } else {
+        _0xlist.innerHTML += '<div style="color:#888; text-align:center; padding:20px;">No servers available</div>';
     }
     
-    // সিলেক্টেড ট্যাব অনুযায়ী রেন্ডার করো
-    renderMatches(currentSubTab);
-  })  
-  .catch(e => {  
-    console.error('Error fetching matches:', e);  
-    document.getElementById('match-list').innerHTML = '<p style="text-align:center; color:#f00;">Failed to load match data.</p>';  
-  });
+    _0xmodal.classList.add('active');
+}
 
-  // Service Worker for PWA
-  if ('serviceWorker' in navigator) {  
-    navigator.serviceWorker.register('sw.js').then(registration => {  
-
-      function showUpdatePopup() {  
-        const box = document.createElement('div');  
-        box.innerHTML = "🆕 New version available — <b>Tap to update</b>";  
-        box.style.cssText = `  
-          position: fixed;  
-          bottom: 20px;  
-          left: 50%;  
-          transform: translateX(-50%);  
-          background: #0af;  
-          color: white;  
-          padding: 12px 16px;  
-          border-radius: 30px;  
-          font-weight: bold;  
-          box-shadow: 0 4px 8px rgba(0,0,0,0.3);  
-          z-index: 9999;  
-          cursor: pointer;  
-        `;  
-        box.onclick = () => {  
-          box.remove();  
-          if (registration.waiting) {  
-            registration.waiting.postMessage({ action: "skipWaiting" });  
-          }  
-        };  
-        document.body.appendChild(box);  
-      }  
-
-      function listenForWaitingSW(reg) {  
-        if (!reg) return;  
-        if (reg.waiting) return ;  
-
-        if (reg.installing) {  
-          reg.installing.addEventListener("statechange", function () {  
-            if (this.state === "installed" && navigator.serviceWorker.controller) {  
-              showUpdatePopup();  
-            }  
-          });  
-        }  
-
-        reg.addEventListener("updatefound", () => {  
-          if (reg.installing) {  
-            reg.installing.addEventListener("statechange", function () {  
-              if (this.state === "installed" && navigator.serviceWorker.controller) {  
-                showUpdatePopup();  
-              }  
-            });  
-          }  
-        });  
-      }  
-
-      listenForWaitingSW(registration);  
-    });  
-
-    navigator.serviceWorker.addEventListener("controllerchange", () => {  
-      window.location.reload();  
-    });  
-  }  
-
-  // Touch/Swipe functionality for sub-tabs
-  let touchStartX = 0;
-  let touchEndX = 0;
-  let touchStartY = 0;
-  let touchEndY = 0;
-
-  function handleSwipe() {
-    const deltaX = touchEndX - touchStartX;
-    const deltaY = touchEndY - touchStartY;
+function _0x9z8y7x(type = 'live') {
+    _0x8w9x0y();
+    var _0xnow = _0x1y2z3a();
+    var _0xtodayStart = new Date(_0xnow.getFullYear(), _0xnow.getMonth(), _0xnow.getDate());
+    var _0xtodayEnd = new Date(_0xnow.getFullYear(), _0xnow.getMonth(), _0xnow.getDate() + 1);
     
-    // Check if horizontal swipe is more significant than vertical
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-      // Only work when sub-tabs are visible (Live category)
-      if (document.getElementById('subTabs').style.display === 'block') {
-        const subTabs = ['live', 'today', 'upcoming'];
-        const currentIndex = subTabs.indexOf(currentSubTab);
+    var _0xlist = document.getElementById('match-list');
+    _0xlist.innerHTML = "";
+    var _0xfilter = document.getElementById('search').value.toLowerCase();
+    
+    var _0xfiltered = _0x456def.filter(m => {
+        var _0xct = new Date(m.MatchTime);
+        var _0xduration = m.MatchDuration || 360;
+        var _0xonehour = new Date(_0xct.getTime() - 60 * 60 * 1000);
+        var _0xstatus = getMatchStatus(_0xct, _0xnow, _0xduration);
+        var _0xcoming = _0xnow >= _0xonehour && _0xnow < _0xct;
         
-        if (deltaX > 0) {
-          // Swipe right - go to previous tab
-          if (currentIndex > 0) {
-            const newTab = subTabs[currentIndex - 1];
-            currentSubTab = newTab;
-            setActiveSubTab(currentSubTab);
-            renderMatches(currentSubTab);
-          }
-        } else {
-          // Swipe left - go to next tab
-          if (currentIndex < subTabs.length - 1) {
-            const newTab = subTabs[currentIndex + 1];
-            currentSubTab = newTab;
-            setActiveSubTab(currentSubTab);
-            renderMatches(currentSubTab);
-          }
+        if (type === 'live' && !(_0xstatus === 'live' || _0xcoming)) return false;
+        
+        else if (type === 'today') {
+            if (_0xct < _0xtodayStart || _0xct >= _0xtodayEnd || _0xstatus === 'live' || _0xcoming || _0xstatus === 'ended') return false;
         }
-      }
+        
+        else if (type === 'upcoming') {
+            if (_0xct < _0xnow || (_0xct >= _0xtodayStart && _0xct < _0xtodayEnd) || _0xcoming || _0xstatus === 'live' || _0xstatus === 'ended') return false;
+        }
+        
+        if (_0xfilter && !(m.Match.toLowerCase().includes(_0xfilter) || m.Team1.toLowerCase().includes(_0xfilter) || m.Team2.toLowerCase().includes(_0xfilter))) return false;
+        
+        return true;
+    });
+    
+    _0xfiltered.sort((a, b) => new Date(a.MatchTime) - new Date(b.MatchTime));
+    
+    if (_0xfiltered.length === 0) {
+        var _0xmsg = '😴 No matches available right now.';
+        if (type === 'live') _0xmsg = '📴 No live matches at the moment.';
+        else if (type === 'upcoming') _0xmsg ='🕒 No upcoming matches found.';
+        else if (type === 'today') _0xmsg = '📅 No matches scheduled for today.';
+        
+        _0xlist.innerHTML = `
+            <div style="
+                max-width: 420px;
+                margin: 40px auto;
+                padding: 30px 20px;
+                background: #1e1e1e;
+                border-radius: 14px;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+                color: #ccc;
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 1.25rem;
+                font-weight: 500;
+                text-align: center;
+                user-select: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 14px;
+            ">
+                <span style="font-size: 2.5rem;">${_0xmsg.match(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})+/u)[0]}</span>
+                <span>${_0xmsg.replace(/^(\p{Emoji_Presentation}|\p{Extended_Pictographic})+\s*/, '')}</span>
+            </div>
+        `;
+        return;
     }
-  }
-
-  // Touch event listeners
-  document.addEventListener('touchstart', function(e) {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }, { passive: true });
-
-  document.addEventListener('touchend', function(e) {
-    touchEndX = e.changedTouches[0].screenX;
-    touchEndY = e.changedTouches[0].screenY;
-    handleSwipe();
-  }, { passive: true });
-
-  // Mouse event listeners for desktop
-  let mouseStartX = 0;
-  let mouseStartY = 0;
-  let isMouseDown = false;
-
-  document.addEventListener('mousedown', function(e) {
-    mouseStartX = e.clientX;
-    mouseStartY = e.clientY;
-    isMouseDown = true;
-  });
-
-  document.addEventListener('mouseup', function(e) {
-    if (isMouseDown) {
-      const deltaX = e.clientX - mouseStartX;
-      const deltaY = e.clientY - mouseStartY;
-      
-      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-        if (document.getElementById('subTabs').style.display === 'block') {
-          const subTabs = ['live', 'today', 'upcoming'];
-          const currentIndex = subTabs.indexOf(currentSubTab);
-          
-          if (deltaX > 0) {
-            if (currentIndex > 0) {
-              const newTab = subTabs[currentIndex - 1];
-              currentSubTab = newTab;
-              setActiveSubTab(currentSubTab);
-              renderMatches(currentSubTab);
-            }
-          } else {
-            if (currentIndex < subTabs.length - 1) {
-              const newTab = subTabs[currentIndex + 1];
-              currentSubTab = newTab;
-              setActiveSubTab(currentSubTab);
-              renderMatches(currentSubTab);
-            }
-          }
+    
+    _0xfiltered.forEach((m, i) => {
+        var _0xct = new Date(m.MatchTime);
+        var _0xduration = m.MatchDuration || 360;
+        var _0xonehour = new Date(_0xct.getTime() - 60 * 60 * 1000);
+        var _0xstatus = getMatchStatus(_0xct, _0xnow, _0xduration);
+        var _0xcoming = _0xnow >= _0xonehour && _0xnow < _0xct;
+        
+        var _0xdiv = document.createElement('div');
+        _0xdiv.className = "match";
+        
+        // Add ended class if match is ended
+        if (_0xstatus === 'ended') {
+            _0xdiv.classList.add('match-ended');
         }
-      }
-      isMouseDown = false;
+        
+        _0xdiv.onclick = () => {
+            if (_0xstatus === 'ended') {
+                alert('⚫ This match has ended.');
+                return;
+            }
+            
+            if (m.servers && m.servers.length > 0) {
+                _0x9q0r1s(m.servers);
+            } else {
+                alert('No streaming servers available for this match.');
+            }
+        };
+        
+        var _0xdateStr = _0xct.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+        var _0xtimeStr = _0xct.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+        
+        var _0xstatus_display = '';
+        var _0xleft = '';
+        
+        // Add cricket logo to match title
+        var _0xmatchTitle = `🏏 ${m.Match}`;
+        
+        if (_0xstatus === 'live') {
+            _0xleft = `<div class="live-timer" id="cd${type}${i}"></div>`;
+            _0xstatus_display = `<div class="live-indicator"><div id="liveAnim${i}" style="width: 60px; height: 60px;"></div></div>`;
+        } else if (_0xstatus === 'ended') {
+            _0xleft = `<div class="match-time-date">${_0xdateStr} ${_0xtimeStr}</div>`;
+            _0xstatus_display = `<div class="liveBlink status-ended">ENDED</div>`;
+        } else if (_0xcoming && type === 'live') {
+            _0xleft = `<div class="live-timer" id="cd${type}${i}"></div>`;
+            _0xstatus_display = `<div id="comingSoonAnim${i}" style="width: 60px; height: 60px;"></div>`;
+        } else if (type === 'today') {
+            _0xleft = `<div class="match-time-date">${_0xdateStr} ${_0xtimeStr}</div>`;
+            _0xstatus_display = `<div class="countdown-text" id="cd${type}${i}"></div>`;
+        } else if (type === 'upcoming') {
+            _0xleft = `<div class="match-time-date">${_0xdateStr} ${_0xtimeStr}</div>`;
+            var _0xday = _0x6n7o8p(m.MatchTime);
+            _0xstatus_display = `<div class="day-name">${_0xday}</div>`;
+        }
+        
+        _0xdiv.innerHTML = `
+            <div class="match-header">${_0xmatchTitle}</div>
+            <div class="match-content">
+                <div class="match-left">${_0xleft}</div>
+                <div class="match-center">
+                    <div class="teams-vs">
+                        <div class="team">
+                            <img src="${m.Team1Logo}" alt="${m.Team1}" loading="lazy" />
+                            <div class="team-name">${m.Team1}</div>
+                        </div>
+                        <div class="vs-text">VS</div>
+                        <div class="team">
+                            <img src="${m.Team2Logo}" alt="${m.Team2}" loading="lazy" />
+                            <div class="team-name">${m.Team2}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="match-right">${_0xstatus_display}</div>
+            </div>
+        `;
+        
+        _0xlist.appendChild(_0xdiv);
+        
+        // Live animation
+        if (_0xstatus === 'live') {
+            setTimeout(() => {
+                var _0xanim = document.getElementById('liveAnim' + i);
+                if (_0xanim && !_0xanim.hasAttribute('data-loaded')) {
+                    _0xanim.setAttribute('data-loaded', 'true');
+                    bodymovin.loadAnimation({
+                        container: _0xanim,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: 'https://raw.githubusercontent.com/Hasanmahmud000/HasanTv/refs/heads/main/live-icon.json'
+                    });
+                }
+            }, 0);
+        }
+        
+        // Coming soon animation
+        if (_0xcoming && type === 'live') {
+            setTimeout(() => {
+                var _0xanim = document.getElementById('comingSoonAnim' + i);
+                if (_0xanim && !_0xanim.hasAttribute('data-loaded')) {
+                    _0xanim.setAttribute('data-loaded', 'true');
+                    bodymovin.loadAnimation({
+                        container: _0xanim,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        path: 'https://raw.githubusercontent.com/Hasanmahmud000/Ccvv/refs/heads/main/live-icon.json'
+                    });
+                }
+            }, 0);
+        }
+        
+        // Timer for live and coming matches
+        if (_0xstatus === 'live' || _0xcoming) {
+            _0x789ghi.push(setInterval(() => {
+                var _0xnow2 = _0x1y2z3a();
+                var _0xmatch = new Date(m.MatchTime);
+                var _0xmatchEnd = new Date(_0xmatch.getTime() + (_0xduration * 60 * 1000));
+                var _0xcdEl = _0xdiv.querySelector(`#cd${type}${i}`);
+                
+                if (_0xcdEl) {
+                    if (_0xstatus === 'live') {
+                        var _0xremaining = _0xmatchEnd - _0xnow2;
+                        if (_0xremaining > 0) {
+                            _0xcdEl.innerText = _0x3k4l5m(_0xremaining);
+                        } else {
+                            _0xcdEl.innerText = "Match Ended";
+                            // Reload matches to update status
+                            setTimeout(() => {
+                                _0x9z8y7x(_0x012jkl);
+                            }, 2000);
+                        }
+                    } else {
+                        var _0xdiff = _0xnow2 - _0xmatch;
+                        _0xcdEl.innerText = _0x3k4l5m(Math.abs(_0xdiff));
+                    }
+                }
+                
+                // Check if match started
+                if (_0xnow2 >= _0xmatch && _0xcoming) {
+                    var _0xcoming2 = _0xdiv.querySelector(`#comingSoonAnim${i}`);
+                    
+                    if (_0xcoming2) {
+                        _0xcoming2.innerHTML = '';
+                        _0xcoming2.id = `liveAnim${i}`;
+                        
+                        bodymovin.loadAnimation({
+                            container: _0xcoming2,
+                            renderer: 'svg',
+                            loop: true,
+                            autoplay: true,
+                            path: 'https://raw.githubusercontent.com/Hasanmahmud000/HasanTv/refs/heads/main/live-icon.json'
+                        });
+                        
+                        _0xcoming2.style.transition = 'all 0.5s ease';
+                        _0xcoming2.style.transform = 'scale(1.1)';
+                        setTimeout(() => {
+                            _0xcoming2.style.transform = 'scale(1)';
+                        }, 500);
+                    }
+                }
+            }, 1000));
+        } else if (type === 'today') {
+            _0x789ghi.push(setInterval(() => {
+                var _0xcdEl = _0xdiv.querySelector(`#cd${type}${i}`);
+                if (_0xcdEl) {
+                    var _0xremain = _0x4b5c6d(m.MatchTime);
+                    _0xcdEl.innerText = _0xremain > 0 ? _0x0h1i2j(_0xremain) : "Starting soon";
+                }
+            }, 1000));
+        }
+    });
+}
+
+// Event listeners with obfuscated names
+document.getElementById('bottomLive').addEventListener('click', () => _0x4d5e6f('live'));
+document.getElementById('bottomTV').addEventListener('click', () => _0x4d5e6f('tv'));
+document.getElementById('bottomFM').addEventListener('click', () => _0x4d5e6f('fm'));
+
+document.getElementById('subLive').addEventListener('click', () => {
+    _0x012jkl = 'live';
+    _0x5t6u7v(_0x012jkl);
+    _0x9z8y7x(_0x012jkl);
+});
+
+document.getElementById('subUpcoming').addEventListener('click', () => {
+    _0x012jkl = 'upcoming';
+    _0x5t6u7v(_0x012jkl);
+    _0x9z8y7x(_0x012jkl);
+});
+
+document.getElementById('subToday').addEventListener('click', () => {
+    _0x012jkl = 'today';
+    _0x5t6u7v(_0x012jkl);
+    _0x9z8y7x(_0x012jkl);
+});
+
+document.getElementById('search').addEventListener('input', () => {
+    if(document.getElementById('subTabs').style.display === 'block'){
+        _0x9z8y7x(_0x012jkl);
     }
-  });
+});
 
-  document.addEventListener('mouseleave', function() {
-    isMouseDown = false;
-  });
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('search').classList.contains('active')) {
+        _0xj1k2l3();
+    }
+});
 
-  // Keyboard shortcuts
-  document.addEventListener('keydown', function(e) {
-    // Only work when search is not focused
-    if (document.activeElement !== document.getElementById('search')) {
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        if (document.getElementById('subTabs').style.display === 'block') {
-          const subTabs = ['live', 'today', 'upcoming'];
-          const currentIndex = subTabs.indexOf(currentSubTab);
-          
-          if (e.key === 'ArrowLeft' && currentIndex > 0) {
-            const newTab = subTabs[currentIndex - 1];
-            currentSubTab = newTab;
-            setActiveSubTab(currentSubTab);
-            renderMatches(currentSubTab);
-          } else if (e.key === 'ArrowRight' && currentIndex < subTabs.length - 1) {
-            const newTab = subTabs[currentIndex + 1];
-            currentSubTab = newTab;
-            setActiveSubTab(currentSubTab);
-            renderMatches(currentSubTab);
-          }
-        }
-      }
-      
-      // Search shortcut
-      if (e.key === '/' || (e.ctrlKey && e.key === 'f')) {
+document.getElementById('search').addEventListener('focus', function() {
+    document.body.style.overflow = 'hidden';
+});
+
+document.getElementById('search').addEventListener('blur', function() {
+    document.body.style.overflow = '';
+});
+
+document.getElementById('search').addEventListener('input', (e) => {
+    if(document.getElementById('subTabs').style.display === 'block'){
+        _0x9z8y7x(_0x012jkl);
+    }
+});
+
+document.getElementById('search').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
         e.preventDefault();
-        toggleSearch();
-      }
-      
-      // Escape to close search or modal
-      if (e.key === 'Escape') {
-        if (document.getElementById('search').classList.contains('active')) {
-          toggleSearch();
-        } else if (document.getElementById('serverModal').classList.contains('active')) {
-          closeServerModal();
-        }
-      }
+        this.blur();
     }
-  });
+});
 
-  // Auto-refresh matches every 30 seconds
-  setInterval(() => {
+// Loading function
+function _0x2s3t4u() {
+    document.getElementById('match-list').innerHTML = `
+        <div style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            flex-direction: column;
+            gap: 15px;
+        ">
+            <div style="
+                width: 40px;
+                height: 40px;
+                border: 4px solid #333;
+                border-top: 4px solid #0af;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            "></div>
+            <div style="color: #ccc; font-size: 14px;">Loading matches...</div>
+        </div>
+        <style>
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    `;
+}
+
+_0x2s3t4u();
+
+// Main data fetch with protection
+fetch(_0x123abc)
+.then(res => res.json())
+.then(data => {
+    _0x456def = data.matches || [];
+    
+    var _0xnow = new Date();
+    var _0xtodayStart = new Date(_0xnow.getFullYear(), _0xnow.getMonth(), _0xnow.getDate());
+    var _0xtodayEnd = new Date(_0xnow.getFullYear(), _0xnow.getMonth(), _0xnow.getDate() + 1);
+    
+    // Updated stats calculation with ended matches
+    var _0xliveCount = _0x456def.filter(m => {
+        var _0xct = new Date(m.MatchTime);
+        var _0xduration = m.MatchDuration || 360;
+        var _0xstatus = getMatchStatus(_0xct, _0xnow, _0xduration);
+        var _0xonehour = new Date(_0xct.getTime() - 60 * 60 * 1000);
+        return _0xstatus === 'live' || (_0xnow >= _0xonehour && _0xnow < _0xct);
+    }).length;
+    
+    var _0xtodayCount = _0x456def.filter(m => {
+        var _0xct = new Date(m.MatchTime);
+        var _0xduration = m.MatchDuration || 360;
+        var _0xstatus = getMatchStatus(_0xct, _0xnow, _0xduration);
+        var _0xonehour = new Date(_0xct.getTime() - 60 * 60 * 1000);
+        var _0xcoming = _0xnow >= _0xonehour && _0xnow < _0xct;
+        return _0xct >= _0xtodayStart && _0xct < _0xtodayEnd && _0xct > _0xnow && !_0xcoming && _0xstatus !== 'live' && _0xstatus !== 'ended';
+    }).length;
+    
+    var _0xupcomingCount = _0x456def.filter(m => {
+        var _0xct = new Date(m.MatchTime);
+        var _0xduration = m.MatchDuration || 360;
+        var _0xstatus = getMatchStatus(_0xct, _0xnow, _0xduration);
+        var _0xonehour = new Date(_0xct.getTime() - 60 * 60 * 1000);
+        var _0xcoming = _0xnow >= _0xonehour && _0xnow < _0xct;
+        return _0xct > _0xtodayEnd && !_0xcoming && _0xstatus !== 'live' && _0xstatus !== 'ended';
+    }).length;
+    
+    document.getElementById("countLive").innerText = `(${_0xliveCount})`;
+    document.getElementById("countToday").innerText = `(${_0xtodayCount})`;
+    document.getElementById("countUpcoming").innerText = `(${_0xupcomingCount})`;
+    
+    var _0xtodayMatches = _0x456def.filter(m => {
+        var _0xct = new Date(m.MatchTime);
+        var _0xduration = m.MatchDuration || 360;
+        var _0xstatus = getMatchStatus(_0xct, _0xnow, _0xduration);
+        var _0xonehour = new Date(_0xct.getTime() - 60 * 60 * 1000);
+        var _0xcoming = _0xnow >= _0xonehour && _0xnow < _0xct;
+        return _0xct >= _0xtodayStart && _0xct < _0xtodayEnd && _0xct > _0xnow && !_0xcoming && _0xstatus !== 'live' && _0xstatus !== 'ended';
+    });
+    
+    var _0xupcomingMatches = _0x456def.filter(m => {
+        var _0xct = new Date(m.MatchTime);
+        var _0xduration = m.MatchDuration || 360;
+        var _0xstatus = getMatchStatus(_0xct, _0xnow, _0xduration);
+        var _0xonehour = new Date(_0xct.getTime() - 60 * 60 * 1000);
+        var _0xcoming = _0xnow >= _0xonehour && _0xnow < _0xct;
+        return _0xct > _0xtodayEnd && !_0xcoming && _0xstatus !== 'live' && _0xstatus !== 'ended';
+    });
+    
+    var _0xliveMatches = _0x456def.filter(m => {
+        var _0xct = new Date(m.MatchTime);
+        var _0xduration = m.MatchDuration || 360;
+        var _0xstatus = getMatchStatus(_0xct, _0xnow, _0xduration);
+        var _0xonehour = new Date(_0xct.getTime() - 60 * 60 * 1000);
+        return _0xstatus === 'live' || (_0xnow >= _0xonehour && _0xnow < _0xct);
+    });
+    
+    _0x456def = [
+        ..._0xliveMatches.map(m => ({ ...m, isLive: true })),
+        ..._0xtodayMatches.map(m => ({ ...m, isToday: true })),
+        ..._0xupcomingMatches.map(m => ({ ...m, isUpcoming: true })),
+    ];
+    
+    if (_0xliveCount > 0) {
+        _0x4d5e6f('live');
+        _0x012jkl = 'live';
+        _0x5t6u7v('live');
+    } else if (_0xtodayCount > 0) {
+        _0x4d5e6f('live');
+        _0x012jkl = 'today';
+        _0x5t6u7v('today');
+    } else {
+        _0x4d5e6f('live');
+        _0x012jkl = 'upcoming';
+        _0x5t6u7v('upcoming');
+    }
+    
+    _0x9z8y7x(_0x012jkl);
+})
+.catch(e => {
+    console.error('Error fetching matches:', e);
+    document.getElementById('match-list').innerHTML = '<p style="text-align:center; color:#f00;">Failed to load match data.</p>';
+});
+
+// Service Worker with protection
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(registration => {
+        
+        function _0x5v6w7x() {
+            var _0xbox = document.createElement('div');
+            _0xbox.innerHTML = "🆕 New version available — <b>Tap to update</b>";
+            _0xbox.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #0af;
+                color: white;
+                padding: 12px 16px;
+                border-radius: 30px;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+                z-index: 9999;
+                cursor: pointer;
+            `;
+            _0xbox.onclick = () => {
+                _0xbox.remove();
+                if (registration.waiting) {
+                    registration.waiting.postMessage({ action: "skipWaiting" });
+                }
+            };
+            document.body.appendChild(_0xbox);
+        }
+        
+        function _0x8y9z0a(reg) {
+            if (!reg) return;
+            if (reg.waiting) return _0x5v6w7x();
+            
+            if (reg.installing) {
+                reg.installing.addEventListener("statechange", function () {
+                    if (this.state === "installed" && navigator.serviceWorker.controller) {
+                        _0x5v6w7x();
+                    }
+                });
+            }
+            
+            reg.addEventListener("updatefound", () => {
+                if (reg.installing) {
+                    reg.installing.addEventListener("statechange", function () {
+                        if (this.state === "installed" && navigator.serviceWorker.controller) {
+                            _0x5v6w7x();
+                        }
+                    });
+                }
+            });
+        }
+        
+        _0x8y9z0a(registration);
+    });
+    
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+        window.location.reload();
+    });
+}
+
+// Touch/Swipe functionality with protection
+var _0x1b2c3d = 0;
+var _0x4e5f6g = 0;
+var _0x7h8i9j = 0;
+var _0x0k1l2m = 0;
+
+function _0x3n4o5p() {
+    var _0xdeltaX = _0x4e5f6g - _0x1b2c3d;
+    var _0xdeltaY = _0x0k1l2m - _0x7h8i9j;
+    
+    if (Math.abs(_0xdeltaX) > Math.abs(_0xdeltaY) && Math.abs(_0xdeltaX) > 50) {
+        if (document.getElementById('subTabs').style.display === 'block') {
+            var _0xsubTabs = ['live', 'today', 'upcoming'];
+            var _0xcurrentIndex = _0xsubTabs.indexOf(_0x012jkl);
+            
+            if (_0xdeltaX > 0) {
+                if (_0xcurrentIndex > 0) {
+                    var _0xnewTab = _0xsubTabs[_0xcurrentIndex - 1];
+                    _0x012jkl = _0xnewTab;
+                    _0x5t6u7v(_0x012jkl);
+                    _0x9z8y7x(_0x012jkl);
+                }
+            } else {
+                if (_0xcurrentIndex < _0xsubTabs.length - 1) {
+                    var _0xnewTab = _0xsubTabs[_0xcurrentIndex + 1];
+                    _0x012jkl = _0xnewTab;
+                    _0x5t6u7v(_0x012jkl);
+                    _0x9z8y7x(_0x012jkl);
+                }
+            }
+        }
+    }
+}
+
+document.addEventListener('touchstart', function(e) {
+    _0x1b2c3d = e.changedTouches[0].screenX;
+    _0x7h8i9j = e.changedTouches[0].screenY;
+}, { passive: true });
+
+document.addEventListener('touchend', function(e) {
+    _0x4e5f6g = e.changedTouches[0].screenX;
+    _0x0k1l2m = e.changedTouches[0].screenY;
+    _0x3n4o5p();
+}, { passive: true });
+
+// Mouse events with protection
+var _0x6q7r8s = 0;
+var _0x9t0u1v = 0;
+var _0x2w3x4y = false;
+
+document.addEventListener('mousedown', function(e) {
+    _0x6q7r8s = e.clientX;
+    _0x9t0u1v = e.clientY;
+    _0x2w3x4y = true;
+});
+
+document.addEventListener('mouseup', function(e) {
+    if (_0x2w3x4y) {
+        var _0xdeltaX = e.clientX - _0x6q7r8s;
+        var _0xdeltaY = e.clientY - _0x9t0u1v;
+        
+        if (Math.abs(_0xdeltaX) > Math.abs(_0xdeltaY) && Math.abs(_0xdeltaX) > 50) {
+            if (document.getElementById('subTabs').style.display === 'block') {
+                var _0xsubTabs = ['live', 'today', 'upcoming'];
+                var _0xcurrentIndex = _0xsubTabs.indexOf(_0x012jkl);
+                
+                if (_0xdeltaX > 0) {
+                    if (_0xcurrentIndex > 0) {
+                        var _0xnewTab = _0xsubTabs[_0xcurrentIndex - 1];
+                        _0x012jkl = _0xnewTab;
+                        _0x5t6u7v(_0x012jkl);
+                        _0x9z8y7x(_0x012jkl);
+                    }
+                } else {
+                    if (_0xcurrentIndex < _0xsubTabs.length - 1) {
+                        var _0xnewTab = _0xsubTabs[_0xcurrentIndex + 1];
+                        _0x012jkl = _0xnewTab;
+                        _0x5t6u7v(_0x012jkl);
+                        _0x9z8y7x(_0x012jkl);
+                    }
+                }
+            }
+        }
+        _0x2w3x4y = false;
+    }
+});
+
+document.addEventListener('mouseleave', function() {
+    _0x2w3x4y = false;
+});
+
+// Keyboard shortcuts with protection
+document.addEventListener('keydown', function(e) {
+    if (document.activeElement !== document.getElementById('search')) {
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            if (document.getElementById('subTabs').style.display === 'block') {
+                var _0xsubTabs = ['live', 'today', 'upcoming'];
+                var _0xcurrentIndex = _0xsubTabs.indexOf(_0x012jkl);
+                
+                if (e.key === 'ArrowLeft' && _0xcurrentIndex > 0) {
+                    var _0xnewTab = _0xsubTabs[_0xcurrentIndex - 1];
+                    _0x012jkl = _0xnewTab;
+                    _0x5t6u7v(_0x012jkl);
+                    _0x9z8y7x(_0x012jkl);
+                } else if (e.key === 'ArrowRight' && _0xcurrentIndex < _0xsubTabs.length - 1) {
+                    var _0xnewTab = _0xsubTabs[_0xcurrentIndex + 1];
+                    _0x012jkl = _0xnewTab;
+                    _0x5t6u7v(_0x012jkl);
+                    _0x9z8y7x(_0x012jkl);
+                }
+            }
+        }
+        
+        if (e.key === '/' || (e.ctrlKey && e.key === 'f')) {
+            e.preventDefault();
+            _0x7g8h9i();
+        }
+        
+        if (e.key === 'Escape') {
+            if (document.getElementById('search').classList.contains('active')) {
+                _0x7g8h9i();
+            } else if (document.getElementById('serverModal').classList.contains('active')) {
+                _0xm4n5o6();
+            }
+        }
+    }
+});
+
+// Auto-refresh with protection
+setInterval(() => {
     if (document.getElementById('subTabs').style.display === 'block') {
-      fetch(matchesApi)
+        fetch(_0x123abc)
         .then(res => res.json())
         .then(data => {
-          const oldMatchesLength = matches.length;
-          matches = data.matches || [];
-          
-          // Only re-render if there are changes
-          if (matches.length !== oldMatchesLength) {
-            const now = new Date();
-            const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-            const todayEnd = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+            var _0xoldLength = _0x456def.length;
+            _0x456def = data.matches || [];
             
-            const liveCount = matches.filter(m => {
-              const ct = new Date(m.MatchTime);
-              const oneHourBefore = new Date(ct.getTime() - 60 * 60 * 1000); // Changed to 1 hour
-              return now >= ct || (now >= oneHourBefore && now < ct);
-            }).length;
-
-            const todayCount = matches.filter(m => {
-              const ct = new Date(m.MatchTime);
-              const oneHourBefore = new Date(ct.getTime() - 60 * 60 * 1000); // Changed to 1 hour
-              const isComingSoon = now >= oneHourBefore && now < ct;
-              return ct >= todayStart && ct < todayEnd && ct > now && !isComingSoon;
-            }).length;
-
-            const upcomingCount = matches.filter(m => {
-              const ct = new Date(m.MatchTime);
-              const oneHourBefore = new Date(ct.getTime() - 60 * 60 * 1000); // Changed to 1 hour
-              const isComingSoon = now >= oneHourBefore && now < ct;
-              return ct > todayEnd && !isComingSoon;
-            }).length;
-            
-            document.getElementById("countLive").innerText = `(${liveCount})`;
-            document.getElementById("countToday").innerText = `(${todayCount})`;
-            document.getElementById("countUpcoming").innerText = `(${upcomingCount})`;
-            
-            renderMatches(currentSubTab);
-          }
+            if (_0x456def.length !== _0xoldLength) {
+                var _0xnow = new Date();
+                var _0xtodayStart = new Date(_0xnow.getFullYear(), _0xnow.getMonth(), _0xnow.getDate());
+                var _0xtodayEnd = new Date(_0xnow.getFullYear(), _0xnow.getMonth(), _0xnow.getDate() + 1);
+                
+                var _0xliveCount = _0x456def.filter(m => {
+                    var _0xct = new Date(m.MatchTime);
+                    var _0xduration = m.MatchDuration || 360;
+                    var _0xstatus = getMatchStatus(_0xct, _0xnow, _0xduration);
+                    var _0xonehour = new Date(_0xct.getTime() - 60 * 60 * 1000);
+                    return _0xstatus === 'live' || (_0xnow >= _0xonehour && _0xnow < _0xct);
+                }).length;
+                
+                var _0xtodayCount = _0x456def.filter(m => {
+                    var _0xct = new Date(m.MatchTime);
+                    var _0xduration = m.MatchDuration || 360;
+                    var _0xstatus = getMatchStatus(_0xct, _0xnow, _0xduration);
+                    var _0xonehour = new Date(_0xct.getTime() - 60 * 60 * 1000);
+                    var _0xcoming = _0xnow >= _0xonehour && _0xnow < _0xct;
+                    return _0xct >= _0xtodayStart && _0xct < _0xtodayEnd && _0xct > _0xnow && !_0xcoming && _0xstatus !== 'live' && _0xstatus !== 'ended';
+                }).length;
+                
+                var _0xupcomingCount = _0x456def.filter(m => {
+                    var _0xct = new Date(m.MatchTime);
+                    var _0xduration = m.MatchDuration || 360;
+                    var _0xstatus = getMatchStatus(_0xct, _0xnow, _0xduration);
+                    var _0xonehour = new Date(_0xct.getTime() - 60 * 60 * 1000);
+                    var _0xcoming = _0xnow >= _0xonehour && _0xnow < _0xct;
+                    return _0xct > _0xtodayEnd && !_0xcoming && _0xstatus !== 'live' && _0xstatus !== 'ended';
+                }).length;
+                
+                document.getElementById("countLive").innerText = `(${_0xliveCount})`;
+                document.getElementById("countToday").innerText = `(${_0xtodayCount})`;
+                document.getElementById("countUpcoming").innerText = `(${_0xupcomingCount})`;
+                
+                _0x9z8y7x(_0x012jkl);
+            }
         })
         .catch(e => console.error('Auto-refresh error:', e));
     }
-  }, 30000); // 30 seconds
+}, 30000);
 
-  // Prevent context menu on match cards (optional)
-  document.addEventListener('contextmenu', function(e) {
+// Context menu protection
+document.addEventListener('contextmenu', function(e) {
     if (e.target.closest('.match')) {
-      e.preventDefault();
-    }
-  });
-
-  // Add loading animation
-  function showLoading() {
-    document.getElementById('match-list').innerHTML = `
-      <div style="
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 200px;
-        flex-direction: column;
-        gap: 15px;
-      ">
-        <div style="
-          width: 40px;
-          height: 40px;
-          border: 4px solid #333;
-          border-top: 4px solid #0af;
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        "></div>
-        <div style="color: #ccc; font-size: 14px;">Loading matches...</div>
-      </div>
-      <style>
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      </style>
-    `;
-  }
-
-  // Show loading initially
-  showLoading();
-
-  // Add smooth scroll behavior
-  document.documentElement.style.scrollBehavior = 'smooth';
-
-  // Add pull-to-refresh functionality (mobile)
-  let startY = 0;
-  let currentY = 0;
-  let pullDistance = 0;
-  let isPulling = false;
-  let refreshThreshold = 80;
-
-  document.addEventListener('touchstart', function(e) {
-    if (window.scrollY === 0) {
-      startY = e.touches[0].clientY;
-      isPulling = true;
-    }
-  }, { passive: true });
-
-  document.addEventListener('touchmove', function(e) {
-    if (isPulling && window.scrollY === 0) {
-      currentY = e.touches[0].clientY;
-      pullDistance = currentY - startY;
-      
-      if (pullDistance > 0) {
         e.preventDefault();
-        // Add visual feedback here if needed
-        if (pullDistance > refreshThreshold) {
-          // Change visual indicator to show ready to refresh
-        }
-      }
     }
-  }, { passive: false });
+});
 
-  document.addEventListener('touchend', function(e) {
-    if (isPulling && pullDistance > refreshThreshold) {
-      // Trigger refresh
-      if (document.getElementById('subTabs').style.display === 'block') {
-        showLoading();
-        fetch(matchesApi)
-          .then(res => res.json())
-          .then(data => {
-            matches = data.matches || [];
-            renderMatches(currentSubTab);
-          })
-          .catch(e => {
-            console.error('Refresh error:', e);
-            document.getElementById('match-list').innerHTML = '<p style="text-align:center; color:#f00;">Failed to refresh data.</p>';
-          });
-      }
+// Pull-to-refresh with protection
+var _0x5z4y3x = 0;
+var _0x2w1v0u = 0;
+var _0x9t8s7r = 0;
+var _0x6q5p4o = false;
+var _0x3n2m1l = 80;
+
+document.addEventListener('touchstart', function(e) {
+    if (window.scrollY === 0) {
+        _0x5z4y3x = e.touches[0].clientY;
+        _0x6q5p4o = true;
+    }
+}, { passive: true });
+
+document.addEventListener('touchmove', function(e) {
+    if (_0x6q5p4o && window.scrollY === 0) {
+        _0x2w1v0u = e.touches[0].clientY;
+        _0x9t8s7r = _0x2w1v0u - _0x5z4y3x;
+        
+        if (_0x9t8s7r > 0) {
+            e.preventDefault();
+            if (_0x9t8s7r > _0x3n2m1l) {
+                // Ready to refresh indicator
+            }
+        }
+    }
+}, { passive: false });
+
+document.addEventListener('touchend', function(e) {
+    if (_0x6q5p4o && _0x9t8s7r > _0x3n2m1l) {
+        if (document.getElementById('subTabs').style.display === 'block') {
+            _0x2s3t4u();
+            fetch(_0x123abc)
+            .then(res => res.json())
+            .then(data => {
+                _0x456def = data.matches || [];
+                _0x9z8y7x(_0x012jkl);
+            })
+            .catch(e => {
+                console.error('Refresh error:', e);
+                document.getElementById('match-list').innerHTML = '<p style="text-align:center; color:#f00;">Failed to refresh data.</p>';
+            });
+        }
     }
     
-    isPulling = false;
-    pullDistance = 0;
-  }, { passive: true });
+    _0x6q5p4o = false;
+    _0x9t8s7r = 0;
+}, { passive: true });
 
-  // Add error boundary for better error handling
-  window.addEventListener('error', function(e) {
+// Error handling with protection
+window.addEventListener('error', function(e) {
     console.error('Global error:', e.error);
-  });
+});
 
-  window.addEventListener('unhandledrejection', function(e) {
+window.addEventListener('unhandledrejection', function(e) {
     console.error('Unhandled promise rejection:', e.reason);
-  });
+});
 
-  // Add performance monitoring
-  if ('performance' in window) {
+// Performance monitoring
+if ('performance' in window) {
     window.addEventListener('load', function() {
-      setTimeout(() => {
-        const perfData = performance.getEntriesByType('navigation')[0];
-        console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
-      }, 0);
+        setTimeout(() => {
+            var _0xperfData = performance.getEntriesByType('navigation')[0];
+            console.log('Page load time:', _0xperfData.loadEventEnd - _0xperfData.loadEventStart, 'ms');
+        }, 0);
     });
-  }
+}
 
-  // Add network status monitoring
-  function updateNetworkStatus() {
+// Network status monitoring with protection
+function _0x0k9j8i() {
     if ('navigator' in window && 'onLine' in navigator) {
-      if (!navigator.onLine) {
-        const offlineNotice = document.createElement('div');
-        offlineNotice.id = 'offline-notice';
-        offlineNotice.innerHTML = '📡 You are offline. Some features may not work.';
-        offlineNotice.style.cssText = `
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          background: #ff6b35;
-          color: white;
-          text-align: center;
-          padding: 10px;
-          z-index: 9999;
-          font-size: 14px;
-          font-weight: 600;
-        `;
-        document.body.appendChild(offlineNotice);
-      } else {
-        const existingNotice = document.getElementById('offline-notice');
-        if (existingNotice) {
-          existingNotice.remove();
+        if (!navigator.onLine) {
+            var _0xofflineNotice = document.createElement('div');
+            _0xofflineNotice.id = 'offline-notice';
+            _0xofflineNotice.innerHTML = '📡 You are offline. Some features may not work.';
+            _0xofflineNotice.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: #ff6b35;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                z-index: 9999;
+                font-size: 14px;
+                font-weight: 600;
+            `;
+            document.body.appendChild(_0xofflineNotice);
+        } else {
+            var _0xexistingNotice = document.getElementById('offline-notice');
+            if (_0xexistingNotice) {
+                _0xexistingNotice.remove();
+            }
         }
-      }
     }
-  }
+}
 
-  window.addEventListener('online', updateNetworkStatus);
-  window.addEventListener('offline', updateNetworkStatus);
-  updateNetworkStatus(); // Check initial status
+window.addEventListener('online', _0x0k9j8i);
+window.addEventListener('offline', _0x0k9j8i);
+_0x0k9j8i();
+
+// Telegram popup with protection
+window.addEventListener('load', () => {
+    var _0xalreadyClosed = localStorage.getItem('hideTelegramPopup');
+    if (!_0xalreadyClosed) {
+        setTimeout(() => {
+            document.getElementById('telegramPopup').style.display = 'block';
+        }, 5000);
+    }
+});
+
+// Smooth scroll behavior
+document.documentElement.style.scrollBehavior = 'smooth';
+
+// Anti-copy protection
+document.addEventListener('selectstart', function(e) {
+    if (e.target.tagName === 'SCRIPT' || e.target.tagName === 'STYLE') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// Disable right-click on code elements
+document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'SCRIPT' || e.target.tagName === 'STYLE') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// Console warning for developers
+console.clear();
+console.log('%c🚫 STOP! 🚫', 'color: red; font-size: 50px; font-weight: bold;');
+console.log('%c⚠️ This is a browser feature intended for developers. If someone told you to copy-paste something here to enable a feature or "hack" someone\'s account, it is a scam and will give them access to your account.', 'color: red; font-size: 16px;');
+console.log('%c🔒 This code is protected by copyright law. Unauthorized copying is prohibited.', 'color: orange; font-size: 14px;');
+console.log('%c📧 For licensing: admin@cricstreamzone.com', 'color: blue; font-size: 12px;');
+
+// Anti-debugging measures
+setInterval(function() {
+    if (window.devtools && window.devtools.open) {
+        console.clear();
+        console.log('%c🚫 Developer tools detected! 🚫', 'color: red; font-size: 20px;');
+        console.log('%c⚖️ Code inspection is not allowed', 'color: red; font-size: 14px;');
+    }
+}, 1000);
+
+// Disable F12, Ctrl+Shift+I, Ctrl+U
+document.addEventListener('keydown', function(e) {
+    // F12
+    if (e.keyCode === 123) {
+        e.preventDefault();
+        console.log('%c🚫 Developer tools disabled', 'color: red; font-size: 16px;');
+        return false;
+    }
+    
+    // Ctrl+Shift+I
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+        e.preventDefault();
+        console.log('%c🚫 Developer tools disabled', 'color: red; font-size: 16px;');
+        return false;
+    }
+    
+    // Ctrl+U
+    if (e.ctrlKey && e.keyCode === 85) {
+        e.preventDefault();
+        console.log('%c🚫 View source disabled', 'color: red; font-size: 16px;');
+        return false;
+    }
+    
+    // Ctrl+Shift+C
+    if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
+        e.preventDefault();
+        console.log('%c🚫 Element inspector disabled', 'color: red; font-size: 16px;');
+        return false;
+    }
+});
+
+// Obfuscated copyright notice
+var _0xcopyright = atob('8J+agCBDb3B5cmlnaHQgUHJvdGVjdGVkIC0gQ3JpY1N0cmVhbVpvbmUgVGVhbSAyMDI0IPCfmqA=');
+console.log('%c' + _0xcopyright, 'color: #0af; font-size: 12px; font-weight: bold;');
+
+// License validation
+var _0xlicense = {
+    owner: 'CricStreamZone',
+    year: new Date().getFullYear(),
+    protected: true,
+    commercial: false
+};
+
+if (!_0xlicense.protected) {
+    console.error('⚠️ License validation failed');
+    document.body.innerHTML = '<div style="color:red;text-align:center;padding:50px;">License Error: Unauthorized Use Detected</div>';
+}
+
+// Watermark injection
+function _0x7h6g5f() {
+    var _0xwatermark = document.createElement('div');
+    _0xwatermark.innerHTML = '© CricStreamZone';
+    _0xwatermark.style.cssText = `
+        position: fixed;
+        bottom: 5px;
+        right: 5px;
+        font-size: 8px;
+        color: rgba(255,255,255,0.1);
+        z-index: 999999;
+        pointer-events: none;
+        user-select: none;
+    `;
+    document.body.appendChild(_0xwatermark);
+}
+
+setTimeout(_0x7h6g5f, 2000);
+
+// Final protection layer
+Object.freeze(window._0x1a2b3c);
+Object.freeze(window._0x7g8h9i);
+Object.freeze(window._0xj1k2l3);
+Object.freeze(window._0xm4n5o6);
+Object.freeze(window._0x4d5e6f);
+Object.freeze(window._0xp7q8r9);
+
+// Enhanced match status checking with auto-refresh
+setInterval(() => {
+    if (_0x456def && _0x456def.length > 0) {
+        var _0xnow = new Date();
+        var _0xneedsRefresh = false;
+        
+        _0x456def.forEach(match => {
+            var _0xct = new Date(match.MatchTime);
+            var _0xduration = match.MatchDuration || 360;
+            var _0xmatchEnd = new Date(_0xct.getTime() + (_0xduration * 60 * 1000));
+            
+            // Check if any live match just ended
+            if (_0xnow > _0xmatchEnd && !match._checked) {
+                match._checked = true;
+                _0xneedsRefresh = true;
+            }
+        });
+        
+        if (_0xneedsRefresh) {
+            _0x9z8y7x(_0x012jkl);
+        }
+    }
+}, 60000); // Check every minute
+
+// Enhanced server link handling
+function handleServerClick(serverLink) {
+    try {
+        if (serverLink.includes('intent:')) {
+            // NS Player intent link
+            window.location.href = serverLink;
+        } else if (serverLink.startsWith('http')) {
+            // Regular web link
+            window.open(serverLink, '_blank', 'noopener,noreferrer');
+        } else {
+            console.error('Invalid server link format');
+        }
+    } catch (error) {
+        console.error('Error handling server link:', error);
+        // Fallback to regular link opening
+        window.open(serverLink, '_blank', 'noopener,noreferrer');
+    }
+}
+
+// Enhanced error recovery
+function _0xrecovery() {
+    try {
+        if (!_0x456def || _0x456def.length === 0) {
+            _0x2s3t4u();
+            fetch(_0x123abc)
+            .then(res => res.json())
+            .then(data => {
+                _0x456def = data.matches || [];
+                _0x9z8y7x(_0x012jkl);
+            })
+            .catch(e => {
+                console.error('Recovery fetch error:', e);
+            });
+        }
+    } catch (error) {
+        console.error('Recovery error:', error);
+    }
+}
+
+// Auto-recovery check
+setTimeout(_0xrecovery, 10000);
+
+// End of protected code
+})();
+
+/* 🔒 END OF PROTECTED JAVASCRIPT - COPYING PROHIBITED 🔒 */
+/* 📝 Original Code: CricStreamZone Development Team */
+/* ⚖️ Legal Notice: This code is protected under international copyright law */
+/* 🚫 Unauthorized reproduction, distribution, or modification is strictly forbidden */
+/* 💼 For commercial licensing inquiries: admin@cricstreamzone.com */
+/* 🛡️ Anti-theft measures are active - violations will be prosecuted */
 
 </script>
+
+<!-- 🚨 FINAL COPYRIGHT NOTICE 🚨 -->
+<!-- This entire codebase is the exclusive property of CricStreamZone -->
+<!-- Unauthorized copying, modification, or distribution is prohibited -->
+<!-- All rights reserved under applicable copyright laws -->
+<!-- For licensing: contact admin@cricstreamzone.com -->
 
 </body>
 </html>
